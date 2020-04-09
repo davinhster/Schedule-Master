@@ -6,10 +6,10 @@
        {% else %}
        <title>Welcome to my blog</title>
        {% endif %}
+       <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/base.css') }}">
     </head>
-    <body>
+    <body class="center">
        <div>
-        my blog: 
             <a href="/">Home</a>
             <a href="/login">Sign in</a>
      </div>

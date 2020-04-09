@@ -1,0 +1,34 @@
+/* >>ELEMENT SELECTORS<< */
+body{
+    background-color: #E1E7E0;
+    border: 6px solid white;
+    margin-left: 15%;
+    margin-right: 15%;
+}
+
+h1{
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    color:#2F6D80;
+}
+
+p{
+    color: #6AA4B0;
+}
+
+a{
+    color: #6AA4B0;
+}
+
+hr{
+    border: 1px solid white;
+}
+
+/* >>CLASS SELECTORS<< */
+
+.center{
+    text-align: center;
+}
+
+
+/* >>ID SELECTORS<< */
