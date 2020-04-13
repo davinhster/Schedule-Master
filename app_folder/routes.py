@@ -37,5 +37,6 @@ def register():
         user = User(current_form.username,current_form.email)
         db.session.add(user)
         db.session.commit()
+        
         return redirect('/')
     return render_template('register.html', title='Register', form=current_form)
