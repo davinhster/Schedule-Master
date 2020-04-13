@@ -34,9 +34,14 @@ def login():
 def register():
     current_form = RegisterForm()
     if current_form.validate_on_submit():
-        user = User(current_form.username,current_form.email)
+        #user = User(username = current_form.username, email =current_form.email)
+        user = User()
         db.session.add(user)
         db.session.commit()
+<<<<<<< HEAD
         
         return redirect('/')
+=======
+        flash("Registration was successfull")
+>>>>>>> ac04f41051ada607233960d23c8613f3fda8cfaa
     return render_template('register.html', title='Register', form=current_form)
