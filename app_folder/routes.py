@@ -2,6 +2,7 @@ from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
 from .forms import LoginForm, RegisterForm
 from app_folder.models import User, Post
+from flask_login import current_user
 
 
 # different URL the app will implement
