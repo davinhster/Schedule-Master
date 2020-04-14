@@ -26,8 +26,10 @@ def hello():
 def login():
     current_form = LoginForm()
     if current_form.validate_on_submit():
-        flash(f'Login requested for user {current_form.username.data}')
-        return redirect('/')
+        if((db.session.query(User.id).filter_by(name=current_form.username.data).scalar() is not None)):
+            flash(f'Login requested for user {current_form.username.data}')
+            return redirect('/')
+        flash(f'Invalid Username or Password')
     return render_template('login.html', title='Sign In', form=current_form)
 
 @app.route('/register', methods=['GET', 'POST'])
