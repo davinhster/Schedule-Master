@@ -1,5 +1,6 @@
 from app_folder import db, login
 from datetime import datetime
+from werkzeug.security import generate_password_hash
 
 @login.user_loader
 def load_user(id):
