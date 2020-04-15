@@ -2,14 +2,13 @@ from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
 from .forms import LoginForm, RegisterForm
 from app_folder.models import User, Post
-from flask_login import current_user
+from flask_login import current_user, login_required
 
 
 # different URL the app will implement
 @app.route("/")
-# called view function
+@login_required
 def hello():
-    user_dictionary = {'username': 'Miguel'}
     posts_list = [
         {
             'author': {'username': 'John'},
@@ -20,7 +19,7 @@ def hello():
             'body': 'The Avengers movie was so cool!'
         }
     ]
-    return render_template('index.html', title='Home', user=user_dictionary, posts=posts_list)
+    return render_template('index.html', title='Home', posts=posts_list)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
