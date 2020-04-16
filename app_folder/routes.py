@@ -2,13 +2,14 @@ from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
 from .forms import LoginForm, RegisterForm
 from app_folder.models import User, Post
-from flask_login import current_user, login_required, login_user
+from flask_login import current_user, login_required
 
 
 # different URL the app will implement
 @app.route("/")
 @login_required
 def hello():
+    '''This is a Hello Function to welcome the user.'''
     posts_list = [
         {
             'author': {'username': 'John'},
@@ -23,6 +24,7 @@ def hello():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+    '''This is a login function that will check if user and password is valid'''
     if current_user.is_authenticated:
         return redirect("/")
     form = LoginForm()
@@ -37,6 +39,7 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+    '''This is a register function to save username and password to database'''
     if current_user.is_authenticated:
         return redirect("/")
     form = RegisterForm()
@@ -51,5 +54,6 @@ def register():
 
 @app.route('/logout')
 def logout():
+    '''This is a logout function'''
     logout_user()
     return redirect("/")

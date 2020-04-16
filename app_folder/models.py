@@ -5,6 +5,7 @@ from flask_login import UserMixin
 
 @login.user_loader
 def load_user(id):
+    '''This function will load the user id'''
     return User.query.get(int(id))
 
 class User(UserMixin, db.Model):
@@ -19,9 +20,11 @@ class User(UserMixin, db.Model):
         return '<User {}>'.format(self.username)
 
     def set_password(self, password):
+        '''This function will generate a password hash'''
         self.password_hash = generate_password_hash(password)
  
     def check_password(self, password):
+        '''This function will check if password is valid'''
         return check_password_hash(self.password_hash, password)
 
 class Post(db.Model):
