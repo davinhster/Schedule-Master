@@ -9,7 +9,9 @@ from flask_login import current_user, login_required
 @app.route("/")
 @login_required
 def hello():
-    '''This is a Hello Function to welcome the user.'''
+    '''Hello Function.
+
+    Welcomes the user with their username after they login'''
     posts_list = [
         {
             'author': {'username': 'John'},
@@ -24,7 +26,9 @@ def hello():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    '''This is a login function that will check if user and password is valid'''
+    '''Login function.
+    
+    Will check if user and password is valid'''
     if current_user.is_authenticated:
         return redirect("/")
     form = LoginForm()
@@ -39,7 +43,9 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    '''This is a register function to save username and password to database'''
+    '''Register function.
+    
+     Saves username and password to database.'''
     if current_user.is_authenticated:
         return redirect("/")
     form = RegisterForm()
@@ -54,6 +60,8 @@ def register():
 
 @app.route('/logout')
 def logout():
-    '''This is a logout function'''
+    '''Logout function.
+    
+    Will logout the user'''
     logout_user()
     return redirect("/")

@@ -5,10 +5,15 @@ from flask_login import UserMixin
 
 @login.user_loader
 def load_user(id):
-    '''This function will load the user id'''
+    '''Load User.
+    
+    This will load the user'''
     return User.query.get(int(id))
 
 class User(UserMixin, db.Model):
+    '''Creates User class.
+
+    This will create the database for the user'''
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
@@ -28,6 +33,9 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 class Post(db.Model):
+    '''Creates Post class.
+    
+    This will create the database for the post'''
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
