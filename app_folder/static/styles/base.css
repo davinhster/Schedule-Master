@@ -31,4 +31,12 @@ hr{
 }
 
 
+.navbar-brand{
+    color: #6AA4B0; 
+}
+
+.input{
+    background-color: white;
+}
+
 /* >>ID SELECTORS<< */
