@@ -56,3 +56,11 @@ def logout():
     Will logout the user'''
     logout_user()
     return redirect("/")
+
+@app.route('/viewEvents')
+def viewEvents():
+    return render_template('viewEvents.html', title='View Events')
+
+@app.route('/settings')
+def settings(): 
+    return render_template('settings.html', title='settings')
