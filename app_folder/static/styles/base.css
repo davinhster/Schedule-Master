@@ -30,7 +30,6 @@ hr{
     text-align: center;
 }
 
-
 .navbar-brand{
     color: #6AA4B0; 
 }
@@ -39,5 +38,8 @@ hr{
     background-color:white;
 }
 
+.navbar-toggle .icon-bar {
+    background-color: #fff;
+}
 
 /* >>ID SELECTORS<< */
