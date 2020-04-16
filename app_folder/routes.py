@@ -2,7 +2,7 @@ from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
 from .forms import LoginForm, RegisterForm
 from app_folder.models import User, Post
-from flask_login import current_user, login_required
+from flask_login import current_user, login_required, logout_user, login_user
 
 
 # different URL the app will implement
@@ -12,17 +12,7 @@ def hello():
     '''Hello Function.
 
     Welcomes the user with their username after they login'''
-    posts_list = [
-        {
-            'author': {'username': 'John'},
-            'body': 'Beautiful day in Portland!'
-        },
-        {
-            'author': {'username': 'Susan'},
-            'body': 'The Avengers movie was so cool!'
-        }
-    ]
-    return render_template('index.html', title='Home', posts=posts_list)
+    return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
