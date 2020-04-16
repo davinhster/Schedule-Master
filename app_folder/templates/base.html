@@ -29,7 +29,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="/">Home</a>
       </li>
-      {% if current_user %}
+      {% if not current_user.is_authenticated %}
       <li class="nav-item active">
         <a class="nav-link" href="/login">Sign in</a>
       </li>
