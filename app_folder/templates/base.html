@@ -17,7 +17,7 @@
        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </head>
-
+<!-- LEFT SIDE OF NAVBAR -->
 <nav class="navbar navbar-custom navbar-expand-lg bg-light center">
 <!--   <a class="navbar-brand" href="#">Navbar</a> -->
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -29,21 +29,31 @@
       <li class="nav-item active">
         <a class="navbar-brand" href="/">Home</a>
       </li>
-      {% if not current_user.is_authenticated %}
-      <li class="nav-item active">
-        <a class="navbar-brand" href="/login">Sign in</a>
-      </li>
-      <li class="nav-item active">
-        <a class="navbar-brand" href="/register">Register</a>
-      </li>
-      {% else %}
-      <li class="nav-item active">
-        <a class="navbar-brand" href="/logout">Logout</a>
-      </li>
-      {% endif%}
-
     </ul>
   </div>
+
+  <!-- RIGHT SIDE OF NAVBAR -->
+  <div class="mx-auto order-0">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+<div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      {% if not current_user.is_authenticated %}
+        <li class="nav-item active">
+            <a class="navbar-brand" href="/login">Sign in</a>
+        </li>
+        <li class="nav-item active">
+            <a class="navbar-brand" href="/register">Register</a>
+        </li>
+        {% else %}
+        <li class="nav-item active">
+          <a class="navbar-brand" href="/logout">Logout</a>
+        </li>
+        {% endif %}
+    </ul>
+</div>
 </nav>
 
 
