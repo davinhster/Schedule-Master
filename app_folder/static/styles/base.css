@@ -1,9 +1,12 @@
 /* >>ELEMENT SELECTORS<< */
 body{
     background-color: #E1E7E0;
-    border: 6px solid white;
-    margin-left: 15%;
-    margin-right: 15%;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+nav{
+    border: 3px solid white;
 }
 
 h1{
