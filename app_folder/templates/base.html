@@ -19,39 +19,28 @@
     </head>
 
 
+<nav class="navbar navbar-custom navbar-expand-lg navbar-light bg-light">
 
 <!-- LEFT SIDE OF NAVBAR -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-
     <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="navbar-brand" href="/">Home</a>
-      </li>
+        <a class="nav-item active navbar-brand" href="/">Home</a>
+        
     </ul>
 
-
-
   <!-- RIGHT SIDE OF NAVBAR -->
-
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
         <span class="navbar-toggler-icon"></span>
     </button>
 
 <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-    <ul class="navbar-nav ml-auto">
+    <div class="navbar-nav ml-auto">
       {% if not current_user.is_authenticated %}
-        <li class="nav-item active">
-            <a class="navbar-brand" href="/login">Sign in</a>
-        </li>
-        <li class="nav-item active">
-            <a class="navbar-brand" href="/register">Register</a>
-        </li>
-        {% else %}
-        <li class="nav-item active">
-          <a class="navbar-brand" href="/logout">Logout</a>
-        </li>
-        {% endif %}
-    </ul>
+        <a class=" nav-item active navbar-brand" href="/login">Sign in</a>
+        <a class=" nav-item active navbar-brand" href="/register">Register</a>
+      {% else %}
+        <a class="nav-item active navbar-brand" href="/logout">Logout</a>
+      {% endif %}
+    </div>
 </div>
 </nav>
 

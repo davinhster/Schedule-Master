@@ -30,17 +30,17 @@ hr{
     text-align: center;
 }
 
-.navbar-brand{
+
+.navbar-text{
     color: #6AA4B0; 
 }
 
-.navbar-custom{
-    background-color:white;
+/* change the brand and text color */
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-text {
+    color: #6AA4B0;
 }
 
-.navbar-toggle .icon-bar {
-    background-color: #fff;
-}
 
 /* >>ID SELECTORS<< */
 
