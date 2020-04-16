@@ -7,7 +7,8 @@ from flask_login import current_user, login_required, logout_user, login_user
 
 # different URL the app will implement
 @app.route("/")
-@login_required
+@app.route("/home")
+#@login_required
 def hello():
     '''Hello Function.
 

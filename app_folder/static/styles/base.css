@@ -30,5 +30,20 @@ hr{
     text-align: center;
 }
 
+.navbar-brand{
+    color: #6AA4B0; 
+}
+
+.navbar-custom{
+    background-color:white;
+}
+
+.navbar-toggle .icon-bar {
+    background-color: #fff;
+}
 
 /* >>ID SELECTORS<< */
+
+#registerLink{
+    color:#2F6D80;
+}

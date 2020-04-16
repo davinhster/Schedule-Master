@@ -31,6 +31,7 @@ class RegisterForm(FlaskForm):
         This will check if the user name is in the database'''
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
+            message = "Username is taken!"
             raise ValidationError('Username is taken.')
  
     def validate_email(self, email):
