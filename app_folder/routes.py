@@ -1,13 +1,13 @@
 from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, DeleteForm
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
 
 
 # different URL the app will implement
 @app.route("/")
-@login_required
+#@login_required
 def hello():
     '''Hello Function.
 
@@ -19,7 +19,7 @@ def login():
     '''Login function.
     
     Will check if user and password is valid'''
-    if current_user.is_authenticated:
+    if current_user.is_authenticated():
         return redirect("/")
     form = LoginForm()
     if form.validate_on_submit():
@@ -36,7 +36,7 @@ def register():
     '''Register function.
     
      Saves username and password to database.'''
-    if current_user.is_authenticated:
+    if current_user.is_authenticated():
         return redirect("/")
     form = RegisterForm()
     if form.validate_on_submit():
@@ -54,4 +54,40 @@ def logout():
     
     Will logout the user'''
     logout_user()
-    return redirect("/")
+    return redirect("/home")
+
+
+@app.route('/delete', methods = ['GET','POST'])
+def delete_account():
+
+    form = DeleteForm()
+
+    
+
+    if form.validate_on_submit():
+        
+        # user = current_user
+        # db.session.delete(user)
+        # db.session.commit()
+
+        return redirect("goodbye")
+   
+    return render_template('delete.html', title = 'Delete Account',form = form)
+
+
+@app.route('/goodbye',methods = ['GET','POST'])
+def goodbye():
+
+    return render_template('goodbye.html',title = "Goodbye")
+
+@app.route('/viewEvents')
+def viewEvents():
+    return render_template('viewEvents.html', title='View Events')
+
+@app.route('/settings')
+def settings(): 
+    return render_template('settings.html', title='settings')
+
+@app.route("/home")
+def home():
+    return render_template('home.html', title='home')

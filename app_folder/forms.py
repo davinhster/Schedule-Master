@@ -1,5 +1,6 @@
+from flask import flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, EqualTo, Email
 from wtforms.fields.html5 import EmailField  
 from wtforms import ValidationError
@@ -16,12 +17,16 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+class DeleteForm(FlaskForm):
+
+    submit = SubmitField('Yes, please delete my account!')
+
 class RegisterForm(FlaskForm):
     '''Register Form.
 
     Creates a form with username, email, and passwords'''
-    username = StringField("Username",validators=[DataRequired()])
-    email = EmailField("Email",validators=[DataRequired(),Email(message = "Email address must be valid!")])
+    username = StringField("Username",validators=[DataRequired(message = "Username is taken.")])
+    email = EmailField("Email",validators=[DataRequired("Email is already in use."),Email(message = "Email address must be valid!")])
     password = PasswordField('Password', validators=[DataRequired(),EqualTo('confirmPassword', message = "Passwords Don't Match!")])
     confirmPassword = PasswordField('Confirm Password', validators=[DataRequired()])
     submit = SubmitField('Register Account')
@@ -32,6 +37,7 @@ class RegisterForm(FlaskForm):
         This will check if the user name is in the database'''
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
+            flash("Username is taken.")
             raise ValidationError('Username is taken.')
  
     def validate_email(self, email):
@@ -40,4 +46,5 @@ class RegisterForm(FlaskForm):
         This will check if the email is in the database'''
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
+            flash("Email is already in use.")
             raise ValidationError('Email is already in use.')

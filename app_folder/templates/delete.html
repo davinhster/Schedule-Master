@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="center">
+
+<h1> Page to delete account </h1>
+
+<h2 style ="color:red"> Are you sure you want to delete your account? :(</h2>
+
+<form action = "" method = "post">
+	{{ form.hidden_tag() }}
+	<p>{{form.submit()}} </p>
+</form>
+
+
+
+</div>
+
+
+{% endblock %}
