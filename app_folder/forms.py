@@ -1,3 +1,4 @@
+from flask import flash
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, EqualTo, Email
@@ -31,6 +32,7 @@ class RegisterForm(FlaskForm):
         This will check if the user name is in the database'''
         user = User.query.filter_by(username=username.data).first()
         if user is not None:
+            flash("Username is taken.")
             raise ValidationError('Username is taken.')
  
     def validate_email(self, email):
@@ -39,4 +41,5 @@ class RegisterForm(FlaskForm):
         This will check if the email is in the database'''
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
+            flash("Email is already in use.")
             raise ValidationError('Email is already in use.')
