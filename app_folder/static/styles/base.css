@@ -55,6 +55,19 @@ li{
     background-color: #e9ecef;
 }
 
+.FormsError{
+    border: rgb(128, 47, 47) solid 3px;
+    margin-top: 3%;
+    margin-left: 38%;
+    margin-right: 38%;
+    background-color: #e9ecef;
+}
+
+.ErrorMessage{
+    color: rgb(128, 47, 47);
+}
+
+
 /* >>ID SELECTORS<< */
 
 #registerLink{

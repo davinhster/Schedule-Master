@@ -56,11 +56,11 @@
 
        {% with messages = get_flashed_messages() %}
          {% if messages %}
-            <ul class="center">
+            <div class="center">
                {% for message in messages %}
-                  <li>{{ message }}</li>
+                  <p class="ErrorMessage">{{ message }}</p>
               {% endfor %}
-            </ul>
+            </div>
          {% endif %}
        {% endwith %} 
 
