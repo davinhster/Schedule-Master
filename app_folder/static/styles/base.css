@@ -47,17 +47,16 @@ li{
     color: #6AA4B0;
 }
 
-
-/* >>ID SELECTORS<< */
-
-#registerLink{
-    color:#2F6D80;
-}
-
 .Forms{
     border: white solid 3px;
     margin-top: 3%;
     margin-left: 38%;
     margin-right: 38%;
     background-color: #e9ecef;
+}
+
+/* >>ID SELECTORS<< */
+
+#registerLink{
+    color:#2F6D80;
 }
