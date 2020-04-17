@@ -1,6 +1,7 @@
 {% extends "base.html" %}
  
 {% block content %}
+<div class="center">
 {% if not current_user.is_authenticated %}
     <h1>Welcome Guest!</h1>
 {% else %}
@@ -10,5 +11,7 @@
     <div>
         <p>Changes Coming Soon!</p>
     </div>
+
+</div>
 
 {% endblock %}

@@ -7,7 +7,6 @@ from flask_login import current_user, login_required, logout_user, login_user
 
 # different URL the app will implement
 @app.route("/")
-@app.route("/home")
 #@login_required
 def hello():
     '''Hello Function.
@@ -55,4 +54,16 @@ def logout():
     
     Will logout the user'''
     logout_user()
-    return redirect("/")
+    return redirect("/home")
+
+@app.route('/viewEvents')
+def viewEvents():
+    return render_template('viewEvents.html', title='View Events')
+
+@app.route('/settings')
+def settings(): 
+    return render_template('settings.html', title='settings')
+
+@app.route("/home")
+def home():
+    return render_template('home.html', title='home')
