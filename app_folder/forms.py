@@ -3,6 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError
 from wtforms.validators import DataRequired, EqualTo, Email
 from wtforms.fields.html5 import EmailField  
+from wtforms import ValidationError
 
 from app_folder import app
 from app_folder.models import User, Post
@@ -15,6 +16,10 @@ class LoginForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
+
+class DeleteForm(FlaskForm):
+
+    submit = SubmitField('Yes, please delete my account!')
 
 class RegisterForm(FlaskForm):
     '''Register Form.

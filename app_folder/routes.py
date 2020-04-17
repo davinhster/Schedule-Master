@@ -1,6 +1,6 @@
 from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, DeleteForm
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
 
@@ -55,6 +55,30 @@ def logout():
     Will logout the user'''
     logout_user()
     return redirect("/home")
+
+
+@app.route('/delete', methods = ['GET','POST'])
+def delete_account():
+
+    form = DeleteForm()
+
+    
+
+    if form.validate_on_submit():
+
+        user = current_user
+        db.session.delete(user)
+        db.session.commit()
+
+        return redirect("goodbye")
+   
+    return render_template('delete.html', title = 'Delete Account',form = form)
+
+
+@app.route('/goodbye',methods = ['GET','POST'])
+def goodbye():
+
+    return render_template('goodbye.html',title = "Goodbye")
 
 @app.route('/viewEvents')
 def viewEvents():
