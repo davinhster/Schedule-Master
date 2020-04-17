@@ -1,7 +1,7 @@
 {% extends "base.html" %}
  
 {% block content %}
-<div class="center">
+<div class="center Forms">
     <h1>Register</h1>
     <form action="" method="post">
         {{ form.hidden_tag() }}
@@ -11,7 +11,7 @@
         </p>
         <p>
             {{ form.email.label }}<br>
-            {{ form.email(size=64) }}
+            {{ form.email(size=32) }}
         </p>
         <p>
             {{ form.password.label }}<br>
