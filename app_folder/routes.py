@@ -19,7 +19,7 @@ def login():
     '''Login function.
     
     Will check if user and password is valid'''
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect("/")
     form = LoginForm()
     if form.validate_on_submit():
@@ -36,7 +36,7 @@ def register():
     '''Register function.
     
      Saves username and password to database.'''
-    if current_user.is_authenticated():
+    if current_user.is_authenticated:
         return redirect("/")
     form = RegisterForm()
     if form.validate_on_submit():
@@ -65,10 +65,10 @@ def delete_account():
     
 
     if form.validate_on_submit():
-        
-        # user = current_user
-        # db.session.delete(user)
-        # db.session.commit()
+
+        user = current_user
+        db.session.delete(user)
+        db.session.commit()
 
         return redirect("goodbye")
    
