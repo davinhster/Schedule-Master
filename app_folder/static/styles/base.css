@@ -70,7 +70,7 @@ li{
     background-color: #e9ecef;
 }
 
-.ErrorMessage{
+.ErrorMessage, .deleteMessage{
     color: rgb(128, 47, 47);
 }
 
