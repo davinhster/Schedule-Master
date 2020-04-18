@@ -10,6 +10,31 @@ Digital calendars are incredibly useful for setting up reminders for one-time ev
 * SQLAlchemy 1.3.13
 
 
+## Install pip and homebrew
+For Homebrew:
+
+```terminal
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+brew install python
+```
+
+For pip:
+
+```terminal
+python get-pip.py
+```
+
+
+## Download requirements
+
+```terminal
+pip install Flask
+pip install -U Flask-SQLAlchemy
+brew install python3
+```
+
+
+
 
 ## How to run this app
 
