@@ -59,25 +59,20 @@ def logout():
 
 @app.route('/delete', methods = ['GET','POST'])
 def delete_account():
-
     form = DeleteForm()
-
-    
-
     if form.validate_on_submit():
-
-        user = current_user
-        db.session.delete(user)
-        db.session.commit()
-
-        return redirect("goodbye")
-   
+        if "cancel_button" in request.form:
+            return redirect("settings")
+        else:
+            user = current_user
+            db.session.delete(user)
+            db.session.commit()
+            return redirect("goodbye")
+    
     return render_template('delete.html', title = 'Delete Account',form = form)
-
 
 @app.route('/goodbye',methods = ['GET','POST'])
 def goodbye():
-
     return render_template('goodbye.html',title = "Goodbye")
 
 @app.route('/viewEvents')

@@ -1,13 +1,13 @@
 from flask import flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError, StringField
 from wtforms.validators import DataRequired, EqualTo, Email
 from wtforms.fields.html5 import EmailField  
 from wtforms import ValidationError
 
 from app_folder import app
 from app_folder.models import User, Post
- 
+
 class LoginForm(FlaskForm):
     '''Login Form.
 
@@ -19,7 +19,7 @@ class LoginForm(FlaskForm):
 
 class DeleteForm(FlaskForm):
 
-    submit = SubmitField('Yes, please delete my account!')
+    submit = SubmitField('Yes, delete my account!')
 
 class RegisterForm(FlaskForm):
     '''Register Form.
@@ -48,3 +48,4 @@ class RegisterForm(FlaskForm):
         if user is not None:
             flash("Email is already in use.")
             raise ValidationError('Email is already in use.')
+
