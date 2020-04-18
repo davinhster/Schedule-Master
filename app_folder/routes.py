@@ -67,7 +67,8 @@ def delete_account():
             user = current_user
             db.session.delete(user)
             db.session.commit()
-            return redirect("goodbye")
+            flash('Sorry to see you go.')
+            return redirect("home")
     
     return render_template('delete.html', title = 'Delete Account',form = form)
 
