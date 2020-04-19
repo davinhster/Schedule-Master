@@ -14,7 +14,18 @@ def load_user(id):
 class User(UserMixin, db.Model):
     '''This function creates User class.
 
-    This function will create the database for the user'''
+    This function will create the database for the user.
+    Parameters
+    id: Integer
+        A set of numbers
+    username: string
+        A name, such as robbin.
+    email: string
+        A name and ending in @xx.com
+    password: string
+        A  made up password
+     '''
+    
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
@@ -39,7 +50,17 @@ class User(UserMixin, db.Model):
 class Post(db.Model):
     '''This is the post class function.
     
-    This function will create the database for the post'''
+    This function will create the database for the post
+    Parameters
+    id: Integer
+        A set of numbers
+    body: string
+        creates a database column
+    timestamp: date and time
+        creates a database column
+    user_id: Integer
+        creates a database column
+        '''
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
