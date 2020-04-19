@@ -5,15 +5,15 @@ from flask_login import UserMixin
 
 @login.user_loader
 def load_user(id):
-    '''Load User.
+    '''This is the load function .
     
-    This will load the user'''
+    This function load users'''
     return User.query.get(int(id))
 
 class User(UserMixin, db.Model):
-    '''Creates User class.
+    '''This function creates User class.
 
-    This will create the database for the user'''
+    This function will create the database for the user'''
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
@@ -23,7 +23,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         return '<User {}>'.format(self.username)
-
+        '''This function will format username'''
     def set_password(self, password):
         '''This function will generate a password hash'''
         self.password_hash = generate_password_hash(password)
@@ -33,9 +33,9 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
 class Post(db.Model):
-    '''Creates Post class.
+    '''This is the post class function.
     
-    This will create the database for the post'''
+    This function will create the database for the post'''
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(256))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
@@ -43,3 +43,4 @@ class Post(db.Model):
  
     def __repr__(self):
         return '<Posts {}>'.format(self.body)
+        '''This function formats post'''
