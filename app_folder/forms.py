@@ -28,7 +28,7 @@ class DeleteForm(FlaskForm):
 class RegisterForm(FlaskForm):
     '''This is the Register Form function.
 
-    This function allows the user to create a form with username, email, and passwords.'''
+    This function allows the user to create a form with username, email, and confirm matching passwords.'''
     username = StringField("Username",validators=[DataRequired(message = "Username is taken.")])
     email = EmailField("Email",validators=[DataRequired("Email is already in use."),Email(message = "Email address must be valid!")])
     password = PasswordField('Password', validators=[DataRequired(),EqualTo('confirmPassword', message = "Passwords Don't Match!")])
