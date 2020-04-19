@@ -9,6 +9,7 @@ def load_user(id):
     
     This function load users'''
     return User.query.get(int(id))
+    ''' Return user id'''
 
 class User(UserMixin, db.Model):
     '''This function creates User class.
@@ -24,6 +25,7 @@ class User(UserMixin, db.Model):
     def __repr__(self):
         '''This function will format username'''
         return '<User {}>'.format(self.username)
+        ''' return username '''
        
     def set_password(self, password):
         '''This function will generate a password hash'''
@@ -32,6 +34,7 @@ class User(UserMixin, db.Model):
     def check_password(self, password):
         '''This function will check if password is valid'''
         return check_password_hash(self.password_hash, password)
+        ''' Check if passwords are the same'''
 
 class Post(db.Model):
     '''This is the post class function.
@@ -45,4 +48,5 @@ class Post(db.Model):
     def __repr__(self):
         '''This function formats post'''
         return '<Posts {}>'.format(self.body)
+        ''' returns post '''
        
