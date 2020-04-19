@@ -78,25 +78,29 @@ def delete_account():
 
 @app.route('/goodbye',methods = ['GET','POST'])
 def goodbye():
-    return render_template('goodbye.html',title = "Goodbye")
     '''This function user logs out the user.
     
     After the user is logged it user wont have access to info.'''
+    return render_template('goodbye.html',title = "Goodbye")
+    
 @app.route('/viewEvents')
 def viewEvents():
-    return render_template('viewEvents.html', title='View Events')
-    '''This is the veiwEvents function.
+     '''This is the veiwEvents function.
     
     This function allows users to view all events.'''
+    return render_template('viewEvents.html', title='View Events')
+   
 @app.route('/settings')
 def settings(): 
-    return render_template('settings.html', title='settings')
     '''This is the settings function.
     
     This function allows users to make changes to their accounts.'''
+    return render_template('settings.html', title='settings')
+    
 @app.route("/home")
 def home():
-    return render_template('home.html', title='home')
     '''This is the home function.
     
     This function brings user back to the home page.'''
+    return render_template('home.html', title='home')
+    
