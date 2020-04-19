@@ -9,9 +9,9 @@ from flask_login import current_user, login_required, logout_user, login_user
 @app.route("/")
 @login_required
 def hello():
-    '''Hello Function.
+    '''This function will greet the user.
 
-    Welcomes the user with their username after they login'''
+   This function welcomes the user with their username after they login'''
     return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
