@@ -11,7 +11,15 @@ from app_folder.models import User, Post
 class LoginForm(FlaskForm):
     '''This is the Login Form function
 
-    This function creates a form with username, password, and the ability to remember user.'''
+    This function creates a form with username, password, and the ability to remember user.
+    Parameters
+    username: string
+        A name, such as robbin.
+    password: string
+        A  made up password
+    remember_me = boolean
+        true for remeber me, false for no.
+     '''
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     remember_me = BooleanField('Remember Me')
@@ -28,7 +36,16 @@ class DeleteForm(FlaskForm):
 class RegisterForm(FlaskForm):
     '''This is the Register Form function.
 
-    This function allows the user to create a form with username, email, and confirm matching passwords.'''
+    This function allows the user to create a form with username, email, and confirm matching passwords.
+    
+    Parameters
+    username: string
+        Validates username and displays error "Username is taken." if username is taken.
+    email: string
+        Validates email and displays error "Email address must be valid!" if email is already used.
+    password: string
+        Validates password and displays error "Passwords Don't Match!" if password does not match.
+     '''
     username = StringField("Username",validators=[DataRequired(message = "Username is taken.")])
     email = EmailField("Email",validators=[DataRequired("Email is already in use."),Email(message = "Email address must be valid!")])
     password = PasswordField('Password', validators=[DataRequired(),EqualTo('confirmPassword', message = "Passwords Don't Match!")])
