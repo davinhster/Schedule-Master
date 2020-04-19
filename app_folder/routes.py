@@ -59,6 +59,10 @@ def logout():
 
 @app.route('/delete', methods = ['GET','POST'])
 def delete_account():
+    '''Delete account.
+    
+    Will delete all information related to account'''
+
     form = DeleteForm()
     if form.validate_on_submit():
         if "cancel_button" in request.form:
