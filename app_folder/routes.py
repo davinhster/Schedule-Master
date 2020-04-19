@@ -59,7 +59,7 @@ def logout():
 
 @app.route('/delete', methods = ['GET','POST'])
 def delete_account():
-    '''Delete account.
+    '''This is the delete account function.
     
     Will delete all information related to account'''
 
