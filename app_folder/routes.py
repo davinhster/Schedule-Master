@@ -11,14 +11,14 @@ from flask_login import current_user, login_required, logout_user, login_user
 def hello():
     '''This function will greet the user.
 
-   This function welcomes the user with their username after they login'''
+   This function welcomes the user with their username after they login.'''
     return render_template('index.html', title='Home')
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    '''Login function.
+    '''This is the Login function.
     
-    Will check if user and password is valid'''
+    This function checks if username and password is valid.'''
     if current_user.is_authenticated:
         return redirect("/")
     form = LoginForm()
@@ -33,9 +33,9 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    '''Register function.
+    '''This is the Register function.
     
-     Saves username and password to database.'''
+     This function create and stores the username and password into database.'''
     if current_user.is_authenticated:
         return redirect("/")
     form = RegisterForm()
@@ -50,9 +50,9 @@ def register():
 
 @app.route('/logout')
 def logout():
-    '''Logout function.
+    '''This is the Logout function.
     
-    Will logout the user'''
+    This function will logout the user and will not allow access to any info.'''
     logout_user()
     return redirect("/home")
 
@@ -61,7 +61,7 @@ def logout():
 def delete_account():
     '''This is the delete account function.
     
-    Will delete all information related to account'''
+    This function delete all information related to account.'''
 
     form = DeleteForm()
     if form.validate_on_submit():
@@ -79,15 +79,24 @@ def delete_account():
 @app.route('/goodbye',methods = ['GET','POST'])
 def goodbye():
     return render_template('goodbye.html',title = "Goodbye")
-
+    '''This function user logs out the user.
+    
+    After the user is logged it user wont have access to info.'''
 @app.route('/viewEvents')
 def viewEvents():
     return render_template('viewEvents.html', title='View Events')
-
+    '''This is the veiwEvents function.
+    
+    This function allows users to view all events.'''
 @app.route('/settings')
 def settings(): 
     return render_template('settings.html', title='settings')
-
+    '''This is the settings function.
+    
+    This function allows users to make changes to their accounts.'''
 @app.route("/home")
 def home():
     return render_template('home.html', title='home')
+    '''This is the home function.
+    
+    This function brings user back to the home page.'''
