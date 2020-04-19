@@ -22,8 +22,9 @@ class User(UserMixin, db.Model):
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
     def __repr__(self):
+         '''This function will format username'''
         return '<User {}>'.format(self.username)
-        '''This function will format username'''
+       
     def set_password(self, password):
         '''This function will generate a password hash'''
         self.password_hash = generate_password_hash(password)
@@ -42,5 +43,6 @@ class Post(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
  
     def __repr__(self):
+         '''This function formats post'''
         return '<Posts {}>'.format(self.body)
-        '''This function formats post'''
+       
