@@ -85,7 +85,7 @@ def goodbye():
     
 @app.route('/viewEvents')
 def viewEvents():
-     '''This is the veiwEvents function.
+    '''This is the veiwEvents function.
     
     This function allows users to view all events.'''
     return render_template('viewEvents.html', title='View Events')

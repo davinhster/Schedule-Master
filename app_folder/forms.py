@@ -18,7 +18,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Sign In')
 
 class DeleteForm(FlaskForm):
-      '''This is the delete Form function.
+    '''This is the delete Form function.
 
     This function allows the user to delete account.'''
 
