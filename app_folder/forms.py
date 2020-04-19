@@ -23,7 +23,7 @@ class DeleteForm(FlaskForm):
     This function allows the user to delete account.'''
 
     submit = SubmitField('Yes, delete my account!')
-    
+    ''' Sumbit field will ask you to confirm that you want to delete account'''
 
 class RegisterForm(FlaskForm):
     '''This is the Register Form function.
@@ -43,7 +43,7 @@ class RegisterForm(FlaskForm):
         if user is not None:
             flash("Username is taken.")
             raise ValidationError('Username is taken.')
- 
+            '''If the username is in the database error message 'Username is taken.' '''
     def validate_email(self, email):
         '''This function validates the users email.
         
@@ -52,4 +52,4 @@ class RegisterForm(FlaskForm):
         if user is not None:
             flash("Email is already in use.")
             raise ValidationError('Email is already in use.')
-
+            '''If the email is in the database error message 'Email is already in use.' will pop up'''
