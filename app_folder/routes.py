@@ -19,7 +19,9 @@ def hello():
 def login():
     '''This is the Login function.
     
-    This function checks if username and password is valid.'''
+    This function checks if username and password is valid.
+    If username or password is not valid error message will display
+    'Invalid username or password'. If valid user will get redirected after login'''
     if current_user.is_authenticated:
         return redirect("/")
     form = LoginForm()
@@ -31,13 +33,15 @@ def login():
         login_user(user, remember=form.remember_me.data)
         return redirect("/")
     return render_template('login.html', title='Sign In', form=form)
-    ''' Will redirect user after login is complete '''
+    
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     '''This is the Register function.
     
-     This function create and stores the username and password into database.'''
+     This function create and stores the username and password into database.
+     A 'Congratulations, your account has been created!' message will be displayed 
+     after user account is created'''
     if current_user.is_authenticated:
         return redirect("/")
     form = RegisterForm()
@@ -49,7 +53,7 @@ def register():
         flash('Congratulations, your account has been created!')
         return redirect('login')
     return render_template('register.html', title='Register', form=form)
-    ''' will create a user account in the database'''
+    
 
 @app.route('/logout')
 def logout():
@@ -58,14 +62,17 @@ def logout():
     This function will logout the user and will not allow access to any info.'''
     logout_user()
     return redirect("/home")
-    ''' After logging out the user will be redirected home'''
+    
 
 
 @app.route('/delete', methods = ['GET','POST'])
 def delete_account():
     '''This is the delete account function.
     
-    This function delete all information related to account.'''
+    This function delete all information related to account.
+    After user confirms user wants to delete account flash message 
+    will display 'Sorry to see you go.' and redirected 
+    user to home screen. Account will be deleted from database.'''
 
     form = DeleteForm()
     if form.validate_on_submit():
@@ -79,7 +86,7 @@ def delete_account():
             return redirect("home")
     
     return render_template('delete.html', title = 'Delete Account',form = form)
-    ''' return will delete user from data base. '''
+    
 
 @app.route('/goodbye',methods = ['GET','POST'])
 def goodbye():
@@ -95,7 +102,7 @@ def viewEvents():
     
     This function allows users to view all events.'''
     return render_template('viewEvents.html', title='View Events')
-    ''' return will redirect user to view events.'''
+    
    
 @app.route('/settings')
 def settings(): 
@@ -112,5 +119,5 @@ def home():
     
     This function brings user back to the home page.'''
     return render_template('home.html', title='home') 
-    ''' return will redirect user to home.'''
+ 
     
