@@ -73,7 +73,6 @@ def delete_account():
         Returns:
             Will redirect to home or delete account page based on the flow of logic.
     '''
-
     form = DeleteForm()
     if form.validate_on_submit():
         if "cancel_button" in request.form:
