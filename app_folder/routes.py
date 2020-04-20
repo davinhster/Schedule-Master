@@ -9,19 +9,20 @@ from flask_login import current_user, login_required, logout_user, login_user
 @app.route("/")
 @login_required
 def hello():
-    '''This function will greet the user.
+    ''' This function will greet the user. This function welcomes the user with their username after they login.
 
-   This function welcomes the user with their username after they login.'''
+        Returns:
+            Will render the index page A.K.A. home page.
+    '''
     return render_template('index.html', title='Home')
-    ''' Will redirect user after login'''
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    '''This is the Login function.
-    
-    This function checks if username and password is valid.
-    If username or password is not valid error message will display
-    'Invalid username or password'. If valid user will get redirected after login'''
+    ''' This is the Login function. This function checks if username and password is valid.
+        
+        Returns:
+            Will redirect to the home page or login page depending on the flow of logic.
+    '''
     if current_user.is_authenticated:
         return redirect("/")
     form = LoginForm()
@@ -37,11 +38,11 @@ def login():
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    '''This is the Register function.
-    
-     This function create and stores the username and password into database.
-     A 'Congratulations, your account has been created!' message will be displayed 
-     after user account is created'''
+    ''' This is the Register function.
+
+        Returns:
+            Will redirect to the home page, login page, or registration page depending of the flow of logic.
+    '''
     if current_user.is_authenticated:
         return redirect("/")
     form = RegisterForm()
@@ -57,22 +58,21 @@ def register():
 
 @app.route('/logout')
 def logout():
-    '''This is the Logout function.
-    
-    This function will logout the user and will not allow access to any info.'''
-    logout_user()
-    return redirect("/home")
-    
+    ''' This is the Logout function. This function will logout the user and will not allow access to any info.
 
+        Returns:
+            Will redirect to the home page.
+    '''
+    logout_user()
+    return redirect("home")
 
 @app.route('/delete', methods = ['GET','POST'])
 def delete_account():
-    '''This is the delete account function.
+    ''' This is the delete account function.
     
-    This function delete all information related to account.
-    After user confirms user wants to delete account flash message 
-    will display 'Sorry to see you go.' and redirected 
-    user to home screen. Account will be deleted from database.'''
+        Returns:
+            Will redirect to home or delete account page based on the flow of logic.
+    '''
 
     form = DeleteForm()
     if form.validate_on_submit():
@@ -84,40 +84,44 @@ def delete_account():
             db.session.commit()
             flash('Sorry to see you go.')
             return redirect("home")
-    
     return render_template('delete.html', title = 'Delete Account',form = form)
     
 
 @app.route('/goodbye',methods = ['GET','POST'])
 def goodbye():
-    '''This function user logs out the user.
+    ''' This function brings the former user to a farewell page.
     
-    After the user is logged it user wont have access to info.'''
+        Returns:
+            Will redirect the user to the goodbye page.
+    '''
     return render_template('goodbye.html',title = "Goodbye")
-    ''' return will prompt goodbye '''
     
 @app.route('/viewEvents')
 def viewEvents():
-    '''This is the veiwEvents function.
+    ''' This is the veiwEvents function.
     
-    This function allows users to view all events.'''
+        Returns:
+            Will redirect the user to the view events page.
+    '''
     return render_template('viewEvents.html', title='View Events')
     
    
 @app.route('/settings')
 def settings(): 
-    '''This is the settings function.
+    ''' This is the settings function.
     
-    This function allows users to make changes to their accounts.'''
+        Returns:
+            Will redirect the user to the settings page.
+    '''
     return render_template('settings.html', title='settings')
- ''' return will redirect user to settings.'''
-
     
 @app.route("/home")
 def home():
-    '''This is the home function.
+    ''' This is the home function.
     
-    This function brings user back to the home page.'''
+        Returns:
+            This will redirect the user home.
+    '''
     return render_template('home.html', title='home') 
  
     
