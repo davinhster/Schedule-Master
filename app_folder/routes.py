@@ -57,6 +57,7 @@ def register():
     
 
 @app.route('/logout')
+@login_required
 def logout():
     ''' This is the Logout function. This function will logout the user and will not allow access to any info.
 
@@ -67,6 +68,7 @@ def logout():
     return redirect("home")
 
 @app.route('/delete', methods = ['GET','POST'])
+@login_required
 def delete_account():
     ''' This is the delete account function.
     
@@ -96,6 +98,7 @@ def goodbye():
     return render_template('goodbye.html',title = "Goodbye")
     
 @app.route('/viewEvents')
+@login_required
 def viewEvents():
     ''' This is the veiwEvents function.
     
@@ -106,6 +109,7 @@ def viewEvents():
     
    
 @app.route('/settings')
+@login_required
 def settings(): 
     ''' This is the settings function.
     
@@ -122,5 +126,24 @@ def home():
             This will redirect the user home.
     '''
     return render_template('home.html', title='home') 
- 
+
+
+@app.route("/addavailability")
+@login_required
+def add_availability():
+    ''' This is the add availability function.
     
+        Returns:
+            This will redirect the user to the add availability page.
+    '''
+    return render_template('addAvailability.html', title='Add Availability') 
+
+@app.route("/resetpassword")
+@login_required
+def reset_password():
+    ''' This is the reset password function.
+    
+        Returns:
+            This will redirect the user to the reset password page.
+    '''
+    return render_template('resetPassword.html', title='Reset Password')  
