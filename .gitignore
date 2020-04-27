@@ -43,3 +43,4 @@ Thumbs.db
 *.pyc
 *.orig
 __pycache__/
+*.code-workspace
