@@ -64,3 +64,17 @@ class Post(db.Model):
         '''
         return '<Posts {}>'.format(self.body)
        
+class Event(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(64), index=True)
+    eventDate = db.Column(db.String(32), index=True)
+    eventTime = db.Column(db.String(32), index=True)
+    guestname = db.Column(db.String(64), index=True)
+
+    def __repr__(self):
+        ''' This function will format username
+        
+            Returns:
+                Will return a username.
+        '''
+        return '<User {}>'.format(self.username)
