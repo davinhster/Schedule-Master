@@ -20,6 +20,9 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(128), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    emailConfirmation = db.Column(db.String(2), index=True)
+    meetingLength = db.Column(db.String(32), index=True)
+
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
