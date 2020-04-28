@@ -1,6 +1,6 @@
 from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
-from .forms import LoginForm, RegisterForm, DeleteForm
+from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
 
@@ -141,7 +141,7 @@ def scheduleMeeting(user):
     else:
         return render_template('pageNotFound.html', title='Nonexistant Page')
 
-@app.route("/addavailability")
+@app.route("/addavailability", methods = ['GET','POST'])
 @login_required
 def add_availability():
     ''' This is the add availability function.
@@ -149,7 +149,13 @@ def add_availability():
         Returns:
             This will redirect the user to the add availability page.
     '''
-    return render_template('addAvailability.html', title='Add Availability') 
+    form = AvailabilityForm()
+    if form.validate_on_submit:
+        start = form.startTime.data
+        end = form.endTime.data
+        flash('Availability Range Updated')
+        return redirect("settings")
+    return render_template('addAvailability.html', title='Add Availability',form = form) 
 
 @app.route("/users")
 def users():

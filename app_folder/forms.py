@@ -1,7 +1,7 @@
 from flask import flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError, StringField
-from wtforms.validators import DataRequired, EqualTo, Email
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError, StringField, TimeField, IntegerField
+from wtforms.validators import DataRequired, EqualTo, Email, NumberRange
 from wtforms.fields.html5 import EmailField  
 from wtforms import ValidationError
 
@@ -45,3 +45,8 @@ class RegisterForm(FlaskForm):
         if user is not None:
             flash("Email is already in use.")
             raise ValidationError('Email is already in use.')
+
+class AvailabilityForm(FlaskForm):
+    startTime = TimeField("Start",validators=[NumberRange(min=1, max=12, message='Select a range between 9 AM and 12 PM'),DataRequired()])
+    endTime = TimeField("End",validators=[NumberRange(min=1, max=12, message='Select a range between 9 AM and 12 PM'),DataRequired()])
+    submit = SubmitField('Set Availability')
