@@ -4,8 +4,9 @@ from .forms import LoginForm, RegisterForm, DeleteForm
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
 
+#test commit
 
-# different URL the app will implement
+# different the app will implement
 @app.route("/")
 @login_required
 def hello():
@@ -57,7 +58,6 @@ def register():
     
 
 @app.route('/logout')
-@login_required
 def logout():
     ''' This is the Logout function. This function will logout the user and will not allow access to any info.
 
@@ -68,13 +68,13 @@ def logout():
     return redirect("home")
 
 @app.route('/delete', methods = ['GET','POST'])
-@login_required
 def delete_account():
     ''' This is the delete account function.
     
         Returns:
             Will redirect to home or delete account page based on the flow of logic.
     '''
+
     form = DeleteForm()
     if form.validate_on_submit():
         if "cancel_button" in request.form:
@@ -98,7 +98,6 @@ def goodbye():
     return render_template('goodbye.html',title = "Goodbye")
     
 @app.route('/viewEvents')
-@login_required
 def viewEvents():
     ''' This is the veiwEvents function.
     
@@ -109,7 +108,6 @@ def viewEvents():
     
    
 @app.route('/settings')
-@login_required
 def settings(): 
     ''' This is the settings function.
     
@@ -120,43 +118,11 @@ def settings():
     
 @app.route("/home")
 def home():
-    ''' This is the home function for guests.
+    ''' This is the home function.
     
         Returns:
-            This will redirect the guest home.
+            This will redirect the user home.
     '''
     return render_template('home.html', title='home') 
-
-@app.route("/schedule-meeting/<user>")
-def scheduleMeeting(user):
-    ''' This is the home function for guests.
+ 
     
-        Returns:
-            This will redirect the guest schedule page for a specified user.
-            If the specified user doesn't exits it will return "Page not found"
-    '''
-    theUser = User.query.filter_by(username=user).first()
-    if(theUser is not None):
-        return render_template('scheduleMeeting.html', title='Schedule',aUser = theUser)
-    else:
-        return render_template('pageNotFound.html', title='Nonexistant Page')
-
-@app.route("/addavailability")
-@login_required
-def add_availability():
-    ''' This is the add availability function.
-    
-        Returns:
-            This will redirect the user to the add availability page.
-    '''
-    return render_template('addAvailability.html', title='Add Availability') 
-
-@app.route("/resetpassword")
-@login_required
-def reset_password():
-    ''' This is the reset password function.
-    
-        Returns:
-            This will redirect the user to the reset password page.
-    '''
-    return render_template('resetPassword.html', title='Reset Password')  
