@@ -120,13 +120,26 @@ def settings():
     
 @app.route("/home")
 def home():
-    ''' This is the home function.
+    ''' This is the home function for guests.
     
         Returns:
-            This will redirect the user home.
+            This will redirect the guest home.
     '''
     return render_template('home.html', title='home') 
 
+@app.route("/schedule-meeting/<user>")
+def scheduleMeeting(user):
+    ''' This is the home function for guests.
+    
+        Returns:
+            This will redirect the guest schedule page for a specified user.
+            If the specified user doesn't exits it will return "Page not found"
+    '''
+    theUser = User.query.filter_by(username=user).first()
+    if(theUser is not None):
+        return render_template('scheduleMeeting.html', title='Schedule',aUser = theUser)
+    else:
+        return render_template('pageNotFound.html', title='Nonexistant Page')
 
 @app.route("/addavailability")
 @login_required
