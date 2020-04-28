@@ -151,6 +151,21 @@ def add_availability():
     '''
     return render_template('addAvailability.html', title='Add Availability') 
 
+@app.route("/users")
+def users():
+    ''' Lists all the users in the database to select an event from
+    
+
+        Returns:
+            a list of users to choose events from
+
+    '''
+
+    userList = User.query.all()
+
+    return render_template('users.html',title ='List of Users',userList = userList)
+
+
 @app.route("/resetpassword")
 @login_required
 def reset_password():

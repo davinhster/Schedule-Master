@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{%block content%}
+
+<h1> Pick an event from this list of creators! </h1>
+
+
+
+
+<ul>
+	{% for user in userList %}
+
+		<a href = "/schedule-meeting/{{user.username}}">
+
+		<li> <b><u>{{user.username}}<u></b></li>
+
+	</a>
+
+	{%endfor%}
+
+</ul>
+
+
+{% endblock %}
