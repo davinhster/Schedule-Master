@@ -117,7 +117,7 @@ def settings():
             Will redirect the user to the settings page.
     '''
     form = SettingsForm()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         meetingLength = form.meetingLength.data
         emailConfirmation = form.emailConfirmation.data
     return render_template('settings.html', title='settings', form = form)
@@ -154,7 +154,7 @@ def add_availability():
             This will redirect the user to the add availability page.
     '''
     form = AvailabilityForm()
-    if form.validate_on_submit:
+    if form.validate_on_submit():
         start = form.startTime.data
         end = form.endTime.data
         flash('Availability Range Updated')
