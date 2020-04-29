@@ -3,17 +3,20 @@
 {% block content %}
 <div class="center">
     <h1> Settings </h1>
+    <form action = "" method = "post">
+        {{ form.hidden_tag() }}
         <p><a href = '/addavailability'>Add Availability</a></p> 
         <hr>
-        <label style="color:#6AA4B0">Length of Meetings:</label>
-        <select id="Length of Meetings">
-            <option value="60min">60 minutes</option>
-            <option value="30min">30 minutes</option>
-            <option value="15min">15 minutes</option>
-        </select>
         <p>
-            <label style="color:#6AA4B0">Email Confirmations:</label>
-            <input type="checkbox" name="emailConfirmation" value="EmailConfirmation" checked>
+            {{ form.meetingLength.label }}
+            {{ form.meetingLength }}
+        </p>
+        <p>
+            {{form.emailConfirmation.label}}
+            {{form.emailConfirmation}}
+        </p>
+        <p>
+            {{ form.submit() }}
         </p>
         <hr>
         <p><a href = '/resetpassword'>Reset Password</a></p>

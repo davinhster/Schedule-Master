@@ -1,9 +1,8 @@
 from flask import flash
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError, StringField, TimeField, IntegerField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, ValidationError, StringField, TimeField, IntegerField, SelectField, BooleanField
 from wtforms.validators import DataRequired, EqualTo, Email, NumberRange
-from wtforms.fields.html5 import EmailField  
-from wtforms import ValidationError
+from wtforms.fields.html5 import EmailField
 
 from app_folder import app
 from app_folder.models import User, Post
@@ -47,6 +46,11 @@ class RegisterForm(FlaskForm):
             raise ValidationError('Email is already in use.')
 
 class AvailabilityForm(FlaskForm):
-    startTime = TimeField("Start",validators=[NumberRange(min=1, max=12, message='Select a range between 9 AM and 12 PM'),DataRequired()])
-    endTime = TimeField("End",validators=[NumberRange(min=1, max=12, message='Select a range between 9 AM and 12 PM'),DataRequired()])
+    startTime = TimeField("Start",validators=[DataRequired(),NumberRange(min=1, max=12, message='Select a range between 9 AM and 12 PM')])
+    endTime = TimeField("End",validators=[DataRequired(),NumberRange(min=1, max=12, message='Select a range between 9 AM and 12 PM')])
     submit = SubmitField('Set Availability')
+
+class SettingsForm(FlaskForm):
+    meetingLength = SelectField('Meeting Length: ',choices=[('60', '60 minutes'), ('30', '30 minutes'), ('15', '15 minutes')])
+    emailConfirmation = BooleanField("Email Confirmation")
+    submit = SubmitField('Update Settings')

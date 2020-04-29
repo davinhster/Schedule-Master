@@ -1,6 +1,6 @@
 from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
-from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm
+from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, SettingsForm
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
 
@@ -108,7 +108,7 @@ def viewEvents():
     return render_template('viewEvents.html', title='View Events')
     
    
-@app.route('/settings')
+@app.route('/settings', methods = ['GET','POST'])
 @login_required
 def settings(): 
     ''' This is the settings function.
@@ -116,7 +116,11 @@ def settings():
         Returns:
             Will redirect the user to the settings page.
     '''
-    return render_template('settings.html', title='settings')
+    form = SettingsForm()
+    if form.validate_on_submit:
+        meetingLength = form.meetingLength.data
+        emailConfirmation = form.emailConfirmation.data
+    return render_template('settings.html', title='settings', form = form)
     
 @app.route("/home")
 def home():
