@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block head %}
-<!--     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/calendar.css') }}">
-    <script src="{{url_for('static', filename='calendar.js')}}"></script> -->
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/calendar.css') }}">
+    <script type = "text/javascript" src="{{url_for('static', filename='calendar.js')}}"></script>
 
 {% endblock %}
 
@@ -17,12 +17,10 @@
 
 
 
-<div class = "calendar">
+<div class = "something-else">
   This month is {{calendar.month_name[4]}} <br>
   The date is {{datetime.date.today()}}
 </div>
-
-
 
 
 
@@ -30,12 +28,14 @@
     https://dribbble.com/shots/2407357-Calendar%60 -->
     
 
-<!--     <div class="container">
+    <div class="container">
         <div class="calendar">
           <div class="front">
             <div class="current-date">
-              <h1>Friday 15th</h1>
-              <h1>May 2020</h1>	
+              <!-- %A to get the name and %d to get the day -->
+              <h1>{{datetime.date.today().strftime("%A")}} 
+                  {{datetime.date.today().strftime("%d")}}</h1>
+              <h1>April 2020</h1>	
             </div>
   
             <div class="current-month">
@@ -51,11 +51,21 @@
   
               <div class="weeks">
                 <div class="first">
-                  <span class="last-month">26</span>
-                  <span class="last-month">27</span>
+                  <span class="last-month">
+                  <a href = "/booktime/{{aUser.username}}/26-April-2020">26</a></span>
+                  <span class="last-month">
+                  <a href = "/booktime/{{aUser.username}}/27-April-2020">27</a></span>
+                  <span class="last-month">
+                  <a href = "/booktime/{{aUser.username}}/28-April-2020">28</a></span>
+                  <span class="last-month">
+                  <a href = "/booktime/{{aUser.username}}/29-April-2020">29</a></span>
+                  <span class="last-month">
+                  <a href = "/booktime/{{aUser.username}}/30-April-2020">30</a></span>
+
+<!--                   <span class="last-month">27</span>
                   <span class="last-month">28</span>
                   <span class="last-month">29</span>
-                  <span class="last-month">30</span>
+                  <span class="last-month">30</span> -->
                   <span>1</span>
                   <span>2</span>
                 </div>
@@ -141,5 +151,5 @@
           </div>
   
         </div>
-      </div> -->
+      </div>
 {% endblock %}
