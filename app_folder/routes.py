@@ -4,6 +4,9 @@ from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, Settin
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
 
+import calendar
+import datetime
+
 # different URL the app will implement
 @app.route("/")
 @login_required
@@ -159,7 +162,7 @@ def scheduleMeeting(user):
     '''
     theUser = User.query.filter_by(username=user).first()
     if(theUser is not None):
-        return render_template('scheduleMeeting.html', title='Schedule',aUser = theUser)
+        return render_template('scheduleMeeting.html', title='Schedule',aUser = theUser,calendar = calendar,datetime = datetime)
     else:
         return render_template('pageNotFound.html', title='Nonexistant Page')
 

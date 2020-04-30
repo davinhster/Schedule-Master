@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
 {% block head %}
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/calendar.css') }}">
-    <script src="{{url_for('static', filename='calendar.js')}}"></script>
+<!--     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/calendar.css') }}">
+    <script src="{{url_for('static', filename='calendar.js')}}"></script> -->
 
 {% endblock %}
 
@@ -15,11 +15,22 @@
     <h1> Schedule Meeting with {{ aUser.username }}</h1>
 </div>
 
+
+
+<div class = "calendar">
+  This month is {{calendar.month_name[4]}} <br>
+  The date is {{datetime.date.today()}}
+</div>
+
+
+
+
+
   <!-- inspired by http://colorhunt.co/c/8184 and 
     https://dribbble.com/shots/2407357-Calendar%60 -->
     
 
-    <div class="container">
+<!--     <div class="container">
         <div class="calendar">
           <div class="front">
             <div class="current-date">
@@ -130,5 +141,5 @@
           </div>
   
         </div>
-      </div>
+      </div> -->
 {% endblock %}
