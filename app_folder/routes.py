@@ -133,10 +133,10 @@ def bookTime(user,day,month,year):
         Returns:
             This will redirect the guest to the book times page.
     '''
-    timeInterval = user.meetingLength
-    start = user.availabilityStart
-    end = user.availabilityEnd
-    return render_template('booktime.html', title='home',theInterval = int(timeInterval), rangeStart = int(start),rangeEnd = int(end)) 
+    timeInterval = float(user.meetingLength) / 60.0
+    start = int(user.availabilityStart)
+    end = int(user.availabilityEnd)
+    return render_template('booktime.html', title='home',theInterval = timeInterval, rangeStart = start,rangeEnd = end) 
 
 @app.route("/home")
 def home():
@@ -176,11 +176,9 @@ def add_availability():
         end = form.endTime.data
         user = current_user
         user.availabilityStart = str(start)
-        user.availabilityEnd = str(End)
+        user.availabilityEnd = str(end)
         flash('Availability Range Updated')
         return redirect("settings")
-    else:
-        flash("Please enter a time between 9:00 AM and 10:00 PM")
         
     return render_template('addAvailability.html', title='Add Availability',form = form) 
 
