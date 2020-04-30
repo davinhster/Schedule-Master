@@ -4,7 +4,6 @@ from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, Settin
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
 
-
 # different URL the app will implement
 @app.route("/")
 @login_required
@@ -133,10 +132,13 @@ def bookTime(user,day,month,year):
         Returns:
             This will redirect the guest to the book times page.
     '''
-    timeInterval = float(user.meetingLength) / 60.0
-    start = int(user.availabilityStart)
-    end = int(user.availabilityEnd)
-    return render_template('booktime.html', title='home',theInterval = timeInterval, rangeStart = start,rangeEnd = end) 
+    theUser = User.query.filter_by(username=user).first()
+    flash(theUser.username)
+    return render_template('home.html', title='settings')
+    #timeInterval = float(str(theUser.meetingLength)) / 60.0
+    #start = float(str(theUser.availabilityStart))
+    #end = float(str(theUser.availabilityEnd))
+    #return render_template('booktime.html', title='book time',theInterval = timeInterval, rangeStart = start,rangeEnd = end) 
 
 @app.route("/home")
 def home():
@@ -178,8 +180,7 @@ def add_availability():
         user.availabilityStart = str(start)
         user.availabilityEnd = str(end)
         flash('Availability Range Updated')
-        return redirect("settings")
-        
+        return redirect("settings")   
     return render_template('addAvailability.html', title='Add Availability',form = form) 
 
 @app.route("/users")
