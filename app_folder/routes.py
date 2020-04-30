@@ -125,7 +125,19 @@ def settings():
         user.emailConfirmation = str(emailConfirmation)
         flash("Settings Updated")
     return render_template('settings.html', title='settings', form = form)
+
+@app.route("/booktime/<user>/<day>-<month>-<year>")
+def bookTime(user,day,month,year):
+    ''' This is the book time function for guests.
     
+        Returns:
+            This will redirect the guest to the book times page.
+    '''
+    timeInterval = user.meetingLength
+    start = user.availabilityStart
+    end = user.availabilityEnd
+    return render_template('booktime.html', title='home',theInterval = int(timeInterval), rangeStart = int(start),rangeEnd = int(end)) 
+
 @app.route("/home")
 def home():
     ''' This is the home function for guests.
@@ -163,7 +175,8 @@ def add_availability():
         start = form.startTime.data
         end = form.endTime.data
         user = current_user
-        user.availability = "Start: "+str(start)+" End: "+str(end)
+        user.availabilityStart = str(start)
+        user.availabilityEnd = str(End)
         flash('Availability Range Updated')
         return redirect("settings")
     else:
