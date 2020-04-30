@@ -157,6 +157,7 @@ def add_availability():
         Returns:
             This will redirect the user to the add availability page.
     '''
+
     form = AvailabilityForm()
     if form.validate_on_submit():
         start = form.startTime.data
@@ -165,6 +166,9 @@ def add_availability():
         user.availability = "Start: "+str(start)+" End: "+str(end)
         flash('Availability Range Updated')
         return redirect("settings")
+    else:
+        flash("Please enter a time between 9:00 AM and 10:00 PM")
+        
     return render_template('addAvailability.html', title='Add Availability',form = form) 
 
 @app.route("/users")
