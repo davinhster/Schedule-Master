@@ -120,6 +120,10 @@ def settings():
     if form.validate_on_submit():
         meetingLength = form.meetingLength.data
         emailConfirmation = form.emailConfirmation.data
+        user = current_user
+        user.meetingLength = str(meetingLength)
+        user.emailConfirmation = str(emailConfirmation)
+        flash("Settings Updated")
     return render_template('settings.html', title='settings', form = form)
     
 @app.route("/home")
@@ -157,6 +161,8 @@ def add_availability():
     if form.validate_on_submit():
         start = form.startTime.data
         end = form.endTime.data
+        user = current_user
+        user.availability = "Start: "+str(start)+" End: "+str(end)
         flash('Availability Range Updated')
         return redirect("settings")
     return render_template('addAvailability.html', title='Add Availability',form = form) 

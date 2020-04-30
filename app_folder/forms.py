@@ -46,8 +46,8 @@ class RegisterForm(FlaskForm):
             raise ValidationError('Email is already in use.')
 
 class AvailabilityForm(FlaskForm):
-    startTime = TimeField("Start",validators=[DataRequired(),NumberRange(min=1, max=12, message='Select a range between 9 AM and 12 PM')])
-    endTime = TimeField("End",validators=[DataRequired(),NumberRange(min=1, max=12, message='Select a range between 9 AM and 12 PM')])
+    startTime = TimeField("Start",validators=[DataRequired()])
+    endTime = TimeField("End",validators=[DataRequired()])
     submit = SubmitField('Set Availability')
 
 class SettingsForm(FlaskForm):

@@ -22,7 +22,7 @@ class User(UserMixin, db.Model):
     password_hash = db.Column(db.String(128))
     emailConfirmation = db.Column(db.String(2), index=True)
     meetingLength = db.Column(db.String(32), index=True)
-
+    availability = db.Column(db.String(32),index = True)
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
