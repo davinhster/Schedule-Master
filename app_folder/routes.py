@@ -3,7 +3,6 @@ from app_folder import app, db, login
 from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, SettingsForm
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
-import mysql.connector
 import calendar
 import datetime
 
@@ -124,17 +123,10 @@ def settings():
         emailConfirmation = form.emailConfirmation.data
 
         user = current_user
+        user.meetingLength = str(meetingLength)
+        user.emailConfirmation = str(emailConfirmation)
+        db.session.commit()
         
-        mydb = mysql.connector.connect(host="localhost",port=5000,user="root",database="Desktop/CMPE131/Project1/app.db")
-        cursor = mydb.cursor()
-        sql = "UPDATE User SET meetingLength = %s WHERE id = %s"
-        val = (meetingLength, user.id)
-        cursor.execute(sql,val)
-        mydb.commit()
-        cursor.close()
-        mydb.close()
-
-        flash(user.meetingLength)
         flash("Settings Updated")
     return render_template('settings.html', title='settings', form = form)
 
@@ -190,6 +182,7 @@ def add_availability():
         user = current_user
         user.availabilityStart = str(start)
         user.availabilityEnd = str(end)
+        db.session.commit()
         flash('Availability Range Updated')
         return redirect("settings")   
     return render_template('addAvailability.html', title='Add Availability',form = form) 
