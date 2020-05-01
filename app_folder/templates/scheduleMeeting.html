@@ -20,8 +20,7 @@
 
 
 <div class = "something-else">
-<!--   This month is {{calendar.month_name[4]}} <br>
-  The date is {{datetime.date.today()}} -->
+  
 </div>
 
 
@@ -37,82 +36,60 @@
               <!-- %A to get the name and %d to get the day -->
               <h1>{{datetime.date.today().strftime("%A")}} 
                   {{datetime.date.today().strftime("%d")}}</h1>
-              <h1>April 2020</h1>	
+              <h1>{{months[datetime.datetime.today().month - 1]}} {{datetime.datetime.today().year}}</h1>	
             </div>
   
             <div class="current-month">
               <ul class="week-days">
-                <li>SUN</li>
-                <li>MON</li>
-                <li>TUE</li>
-                <li>WED</li>
-                <li>THU</li>
-                <li>FRI</li>
-                <li>SAT</li>
+                {%for i in ordered%}
+                  <li>{{i}}</li>
+                {% endfor%}
               </ul>
-  
+
               <div class="weeks">
                 <div class="first">
-                  <span class="last-month">
-                  <a href = "/booktime/{{aUser.username}}/26-April-2020">26</a></span>
-                  <span class="last-month">
-                  <a href = "/booktime/{{aUser.username}}/27-April-2020">27</a></span>
-                  <span class="last-month">
-                  <a href = "/booktime/{{aUser.username}}/28-April-2020">28</a></span>
-                  <span class="last-month">
-                  <a href = "/booktime/{{aUser.username}}/29-April-2020">29</a></span>
-                  <span class="last-month">
-                  <a href = "/booktime/{{aUser.username}}/30-April-2020">30</a></span>
-
-                  <span><a href = "/booktime/{{aUser.username}}/1-May-2020">1</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/2-May-2020">2</a></span>
+                  {% for i in range(1,8)%}
+                    <span>
+                      <a href = "/booktime/{{aUser.username}}/{{i}}-{{datetime.datetime.today().month}}-{{datetime.datetime.today().year}}">{{i}}</a>
+                    </span>
+                  {% endfor %}
                 </div>
   
                 <div class="second">
-                  <span><a href = "/booktime/{{aUser.username}}/3-May-2020">3</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/4-May-2020">4</a></span>
-                  <span class="event">
-                    <a href = "/booktime/{{aUser.username}}/5-May-2020">5</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/6-May-2020">6</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/7-May-2020">7</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/8-May-2020">8</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/9-May-2020">9</a></span>
+                  {% for i in range(8,15)%}
+                    <span>
+                      <a href = "/booktime/{{aUser.username}}/{{i}}-{{datetime.datetime.today().month}}-{{datetime.datetime.today().year}}">{{i}}</a>
+                    </span>
+                  {% endfor %}
                 </div>
   
                 <div class="third">
-                  <span><a href = "/booktime/{{aUser.username}}/10-May-2020">10</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/11-May-2020">11</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/12-May-2020">12</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/13-May-2020">13</a></span>
-                  <span class="active">
-                    <a href = "/booktime/{{aUser.username}}/14-May-2020">14</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/15-May-2020">15</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/16-May-2020">16</a></span>
+                  {% for i in range(15,22)%}
+                    <span>
+                      <a href = "/booktime/{{aUser.username}}/{{i}}-{{datetime.datetime.today().month}}-{{datetime.datetime.today().year}}">{{i}}</a>
+                    </span>
+                  {% endfor %}
                 </div>
   
                 <div class="fourth">
-                  <span><a href = "/booktime/{{aUser.username}}/17-May-2020">17</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/18-May-2020">18</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/19-May-2020">19</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/20-May-2020">20</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/21-May-2020">21</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/22-May-2020">22</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/23-May-2020">23</a></span>
+                  {% for i in range(22,29)%}
+                    <span>
+                      <a href = "/booktime/{{aUser.username}}/{{i}}-{{datetime.datetime.today().month}}-{{datetime.datetime.today().year}}">{{i}}</a>
+                    </span>
+                  {% endfor %}
                 </div>
   
                 <div class="fifth">
-                  <span><a href = "/booktime/{{aUser.username}}/24-May-2020">24</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/25-May-2020">25</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/26-May-2020">26</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/27-May-2020">27</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/28-May-2020">28</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/29-May-2020">29</a></span>
-                  <span><a href = "/booktime/{{aUser.username}}/30-May-2020">30</a></span>
+                  {% if datetime.date.month != 2 %}
+                    {% for i in range(29,32)%}
+                      {% if (31 > i) or (calendar.monthrange(datetime.datetime.today().year,datetime.datetime.today().month)[1] > 30 ) %}
+                        <span>
+                          <a href = "/booktime/{{aUser.username}}/{{i}}-{{datetime.date.month}}-{{datetime.date.year}}">{{i}}</a>
+                        </span>
+                      {% endif %}
+                    {% endfor %}
+                  {% endif %}
                 </div>
-
-                <div class="sixth">
-                <span><a href = "/booktime/{{aUser.username}}/31-May-2020">31</a></span>
-                  </div>
               </div>
             </div>
           </div>

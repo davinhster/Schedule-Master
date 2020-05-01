@@ -164,7 +164,21 @@ def scheduleMeeting(user):
     '''
     theUser = User.query.filter_by(username=user).first()
     if(theUser is not None):
-        return render_template('scheduleMeeting.html', title='Schedule',aUser = theUser,calendar = calendar,datetime = datetime)
+
+        months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        weekdays = ["Mon","Tues","Wed","Thurs","Fri","Sat","Sun"]
+        theFirst = datetime.datetime.today().replace(day=1)
+        dayOfFirst = theFirst.weekday()
+        orderedWeekdays = ['','','','','','','']
+        j = dayOfFirst
+        for i in range(0,7):
+            orderedWeekdays[i] = weekdays[j]
+            j += 1
+            if(j >= 7):
+                j = 0 
+
+
+        return render_template('scheduleMeeting.html', title='Schedule',aUser = theUser,calendar = calendar,datetime = datetime,ordered = orderedWeekdays, months = months)
     else:
         return render_template('pageNotFound.html', title='Nonexistant Page')
 
