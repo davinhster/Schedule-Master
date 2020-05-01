@@ -1,7 +1,7 @@
 from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
 from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, SettingsForm
-from app_folder.models import User, Post
+from app_folder.models import User, Post, Event
 from flask_login import current_user, login_required, logout_user, login_user
 import calendar
 import datetime
@@ -14,14 +14,12 @@ def hello():
     ''' This function will greet the user. This function welcomes the user with their username after they login.
 
         Returns:
-            Will render the index page A.K.A. home page.
+            Will render the index page A.K.A. user home page.
     '''
 
-    if current_user.is_authenticated:
-        user = current_user
-        flash("Note that .5 represents 30 minutes")
-    
-    return render_template('index.html', title='Home',user = user)
+    user = current_user
+    events = Event.query.filter_by(username=user.username).all()
+    return render_template('index.html', title='Home',user = user, events = events)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -134,7 +132,7 @@ def settings():
         db.session.commit()
         
         flash("Settings Updated")
-    return render_template('settings.html', title='settings', form = form)
+    return render_template('settings.html', title='Settings', form = form)
 
 @app.route("/booktime/<user>/<day>-<month>-<year>")
 def bookTime(user,day,month,year):
@@ -157,7 +155,7 @@ def home():
         Returns:
             This will redirect the guest home.
     '''
-    return render_template('home.html', title='home') 
+    return render_template('home.html', title='Home') 
 
 @app.route("/schedule-meeting/<user>")
 def scheduleMeeting(user):
@@ -169,7 +167,6 @@ def scheduleMeeting(user):
     '''
     theUser = User.query.filter_by(username=user).first()
     if(theUser is not None):
-
         months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
         weekdays = ["Mon","Tues","Wed","Thurs","Fri","Sat","Sun"]
         theFirst = datetime.datetime.today().replace(day=1)
@@ -181,11 +178,9 @@ def scheduleMeeting(user):
             j += 1
             if(j >= 7):
                 j = 0 
-
-
         return render_template('scheduleMeeting.html', title='Schedule',aUser = theUser,calendar = calendar,datetime = datetime,ordered = orderedWeekdays, months = months)
     else:
-        return render_template('pageNotFound.html', title='Nonexistant Page')
+        return render_template('pageNotFound.html', title='Page Not Found')
 
 @app.route("/addavailability", methods = ['GET','POST'])
 @login_required
@@ -210,16 +205,15 @@ def add_availability():
 
 @app.route("/users")
 def users():
-    ''' Lists all the users in the database to select an event from
+    ''' Lists all the users in the database to select an event from.
     
 
         Returns:
-            a list of users to choose events from
+            A list of users to choose events from.
 
     '''
 
     userList = User.query.all()
-
     return render_template('users.html',title ='List of Users',userList = userList)
 
 
