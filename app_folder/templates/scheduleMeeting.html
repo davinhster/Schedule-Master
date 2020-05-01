@@ -3,6 +3,8 @@
 {% block head %}
     <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/calendar.css') }}">
     <script type = "text/javascript" src="{{url_for('static', filename='calendar.js')}}"></script>
+    <script src="{{url_for('static', filename='calendar.js')}}"></script>
+
 
 {% endblock %}
 
@@ -40,13 +42,13 @@
   
             <div class="current-month">
               <ul class="week-days">
+                <li>SUN</li>
                 <li>MON</li>
                 <li>TUE</li>
                 <li>WED</li>
                 <li>THU</li>
                 <li>FRI</li>
                 <li>SAT</li>
-                <li>SUN</li>
               </ul>
   
               <div class="weeks">
@@ -62,7 +64,7 @@
                   <span class="last-month">
                   <a href = "/booktime/{{aUser.username}}/30-April-2020">30</a></span>
 
-<!--                   <span class="last-month">27</span>
+<!--              <span class="last-month">27</span>
                   <span class="last-month">28</span>
                   <span class="last-month">29</span>
                   <span class="last-month">30</span> -->
