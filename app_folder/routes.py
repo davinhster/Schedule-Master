@@ -3,7 +3,7 @@ from app_folder import app, db, login
 from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, SettingsForm
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
-
+import mysql.connector
 import calendar
 import datetime
 
@@ -122,9 +122,19 @@ def settings():
     if form.validate_on_submit():
         meetingLength = form.meetingLength.data
         emailConfirmation = form.emailConfirmation.data
+
         user = current_user
-        user.meetingLength = str(meetingLength)
-        user.emailConfirmation = str(emailConfirmation)
+        
+        mydb = mysql.connector.connect(host="localhost",port=5000,user="root",database="Desktop/CMPE131/Project1/app.db")
+        cursor = mydb.cursor()
+        sql = "UPDATE User SET meetingLength = %s WHERE id = %s"
+        val = (meetingLength, user.id)
+        cursor.execute(sql,val)
+        mydb.commit()
+        cursor.close()
+        mydb.close()
+
+        flash(user.meetingLength)
         flash("Settings Updated")
     return render_template('settings.html', title='settings', form = form)
 
@@ -136,12 +146,10 @@ def bookTime(user,day,month,year):
             This will redirect the guest to the book times page.
     '''
     theUser = User.query.filter_by(username=user).first()
-    flash(theUser.username)
-    return render_template('home.html', title='settings')
-    #timeInterval = float(str(theUser.meetingLength)) / 60.0
-    #start = float(str(theUser.availabilityStart))
-    #end = float(str(theUser.availabilityEnd))
-    #return render_template('booktime.html', title='book time',theInterval = timeInterval, rangeStart = start,rangeEnd = end) 
+    timeInterval = float(theUser.meetingLength) / 60.0
+    start = float(theUser.availabilityStart)
+    end = float(theUser.availabilityEnd)
+    return render_template('booktime.html', title='book time',theInterval = timeInterval, rangeStart = start,rangeEnd = end) 
 
 @app.route("/home")
 def home():
