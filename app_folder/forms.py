@@ -158,3 +158,8 @@ class SettingsForm(FlaskForm):
     meetingLength = SelectField('Meeting Length: ',choices=[('60', '60 minutes'), ('30', '30 minutes'), ('15', '15 minutes')])
     emailConfirmation = BooleanField("Email Confirmation")
     submit = SubmitField('Update Settings')
+
+class BookTimeForm(FlaskForm):
+    guestname = StringField('Guest Name: ',validators=[DataRequired()])
+    description = StringField('Description: ', validators=[DataRequired()])
+    submit = SubmitField('Confirm Booking')

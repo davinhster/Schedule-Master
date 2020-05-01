@@ -11,11 +11,12 @@
         <p>Meetings:</p>
         {% for i in range %}
             {% if i > 12.75 %}
-                <p>From {{ (i - 12)|int }}:{{ ((i - 12 - (i - 12)|int ) * 60)|int }} to {{ (i + theInterval - 12)|int }}:{{ ((i + theInterval - 12 - (i + theInterval - 12)|int ) * 60)|int }}</p>
+                <a href = "/bookdetails/{{user}}/{{day}}-{{month}}-{{year}}/{{ (i - 12)|int }}:{{ ((i - 12 - (i - 12)|int ) * 60)|int }}-{{ (i + theInterval - 12)|int }}:{{ ((i + theInterval - 12 - (i + theInterval - 12)|int ) * 60)|int }}">From {{ (i - 12)|int }}:{{ ((i - 12 - (i - 12)|int ) * 60)|int }} to {{ (i + theInterval - 12)|int }}:{{ ((i + theInterval - 12 - (i + theInterval - 12)|int ) * 60)|int }}</a>
             {% else %}
-                <p>From {{ i|int }}:{{ ((i - i|int ) * 60)|int }} to {{ (i + theInterval)|int }}:{{ ((i + theInterval - (i + theInterval)|int ) * 60)|int }}</p>
+                <a href = "/bookdetails/{{user}}/{{day}}-{{month}}-{{year}}/{{ i|int }}:{{ ((i - i|int ) * 60)|int }}-{{ (i + theInterval)|int }}:{{ ((i + theInterval - (i + theInterval)|int ) * 60)|int }}">From {{ i|int }}:{{ ((i - i|int ) * 60)|int }} to {{ (i + theInterval)|int }}:{{ ((i + theInterval - (i + theInterval)|int ) * 60)|int }}</a>
             {% endif %}
         {% endfor %}
+
 	</form>
 </div>
 

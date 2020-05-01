@@ -1,6 +1,6 @@
 from flask import render_template, redirect, flash, request
 from app_folder import app, db, login
-from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, SettingsForm
+from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, SettingsForm, BookTimeForm
 from app_folder.models import User, Post, Event
 from flask_login import current_user, login_required, logout_user, login_user
 import calendar
@@ -101,17 +101,6 @@ def goodbye():
             Will redirect the user to the goodbye page.
     '''
     return render_template('goodbye.html',title = "Goodbye")
-    
-@app.route('/viewEvents')
-@login_required
-def viewEvents():
-    ''' This is the veiwEvents function.
-    
-        Returns:
-            Will redirect the user to the view events page.
-    '''
-    return render_template('viewEvents.html', title='View Events')
-    
    
 @app.route('/settings', methods = ['GET','POST'])
 @login_required
@@ -146,7 +135,26 @@ def bookTime(user,day,month,year):
     start = float(theUser.availabilityStart)
     end = float(theUser.availabilityEnd)
     theRange = numpy.arange(start,end,timeInterval)
-    return render_template('booktime.html', title='Book Time',theInterval = timeInterval, range = theRange) 
+    return render_template('booktime.html', title='Book Time',theInterval = timeInterval, range = theRange,user = user,day = day,month=month,year=year) 
+
+@app.route("/bookdetails/<user>/<day>-<month>-<year>/<start>-<end>", methods = ['GET','POST'])
+def bookingDetails(user,day,month,year,start,end):
+    ''' This is the booking details function for guests.
+    
+        Returns:
+            This will redirect the guest to the booking details page.
+    '''
+    theUser = User.query.filter_by(username=user).first()
+    date = month+'/'+day+'/'+year
+    time = start+'-'+end
+    form = BookTimeForm()
+    if form.validate_on_submit():
+        event = Event(username = theUser.username, eventDate = date, eventTime = time,guestname = form.guestname.data, description = form.description.data)
+        db.session.add(event)
+        db.session.commit()
+        flash("Booking Confirmed")
+        return redirect("/home")
+    return render_template('bookingDetails.html', title='Booking Details', form = form,user = user,date = date,time = time) 
 
 @app.route("/home")
 def home():
