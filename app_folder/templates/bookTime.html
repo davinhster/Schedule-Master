@@ -9,8 +9,8 @@
 {% endif %}
     <h1> Book Time </h1>
         <p>Meetings:</p>
-        {% for i in range({{ rangeStart }}, {{ rangeEnd }} + 1, {{ theInterval }}) %}
-            {% if {{ i }} > 12.75 %}
+        {% for i in range %}
+            {% if i > 12.75 %}
                 <p>From {{ (i - 12)|int }}:{{ ((i - 12 - (i - 12)|int ) * 60)|int }} to {{ (i + theInterval - 12)|int }}:{{ ((i + theInterval - 12 - (i + theInterval - 12)|int ) * 60)|int }}</p>
             {% else %}
                 <p>From {{ i|int }}:{{ ((i - i|int ) * 60)|int }} to {{ (i + theInterval)|int }}:{{ ((i + theInterval - (i + theInterval)|int ) * 60)|int }}</p>

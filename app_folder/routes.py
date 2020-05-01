@@ -5,6 +5,7 @@ from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
 import calendar
 import datetime
+import numpy
 
 # different URL the app will implement
 @app.route("/")
@@ -141,7 +142,8 @@ def bookTime(user,day,month,year):
     timeInterval = float(theUser.meetingLength) / 60.0
     start = float(theUser.availabilityStart)
     end = float(theUser.availabilityEnd)
-    return render_template('booktime.html', title='book time',theInterval = timeInterval, rangeStart = start,rangeEnd = end) 
+    theRange = numpy.arange(start,end,timeInterval)
+    return render_template('booktime.html', title='Book Time',theInterval = timeInterval, range = theRange) 
 
 @app.route("/home")
 def home():
