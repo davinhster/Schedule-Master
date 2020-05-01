@@ -3,7 +3,7 @@ from app_folder import app, db, login
 from .forms import LoginForm, RegisterForm, DeleteForm, AvailabilityForm, SettingsForm
 from app_folder.models import User, Post
 from flask_login import current_user, login_required, logout_user, login_user
-import mysql.connector
+# import mysql.connector
 import calendar
 import datetime
 
