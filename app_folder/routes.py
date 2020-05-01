@@ -16,8 +16,12 @@ def hello():
         Returns:
             Will render the index page A.K.A. home page.
     '''
-    events = User.query.with_entities(User.meetingLength)
-    return render_template('index.html', title='Home',events = events)
+
+    if current_user.is_authenticated:
+        user = current_user
+        flash("Note that .5 represents 30 minutes")
+    
+    return render_template('index.html', title='Home',user = user)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
