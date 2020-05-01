@@ -8,10 +8,21 @@
         <h1>Welcome Guest!</h1>
     {% else %}
         <h1> Welcome {{ current_user.username }}!</h1>
-
-        <h2> Here are your appointments below: </h2>
-
-        You have a {{user.meetingLength}} minute meeting from {{user.availabilityStart}} to {{user.availabilityEnd}}
+        <h2> Events/Appointments: </h2>
+        {% if events|length == 0 %}
+            <p>There are no events at this time.</p>
+        {% else %}
+            {% for i in events %}
+                <hr>
+                <p>
+                    {{ i.eventDate }}: {{ i.eventTime }}: Meeting with {{ i.guestName }}
+                </p>
+                <p>
+                    Event Description: {{ i.description }}
+                </p>
+            {% endfor %}
+        {% endif %}
+        
     
     {% endif %}
 </div>
