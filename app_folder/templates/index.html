@@ -8,6 +8,13 @@
         <h1>Welcome Guest!</h1>
     {% else %}
         <h1> Welcome {{ current_user.username }}!</h1>
+        <h2> Here are your appointments below: </h2>
+
+        {% for event in events%}
+
+        <li>{{event}}</li>
+
+        {%endfor%}
     
     {% endif %}
 </div>
