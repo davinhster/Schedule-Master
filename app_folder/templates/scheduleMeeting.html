@@ -69,10 +69,14 @@
   
                 <div class="fifth">
                   {% if datetime.date.month != 2 %}
-                    {% for i in range(29,32)%}
-                      {% if (31 > i) or (calendar.monthrange(datetime.datetime.today().year,datetime.datetime.today().month)[1] > 30 ) %}
+                    {% for i in range(29,36)%}
+                      {% if (31 > i) or ((calendar.monthrange(datetime.datetime.today().year,datetime.datetime.today().month)[1] > 30) and (32 > i)) %}
                         <span>
-                          <a href = "/booktime/{{aUser.username}}/{{i}}-{{datetime.date.month}}-{{datetime.date.year}}">{{i}}</a>
+                          <a href = "/booktime/{{aUser.username}}/{{i}}-{{datetime.datetime.today().month}}-{{datetime.datetime.today().year}}">{{i}}</a>
+                        </span>
+                      {% else %}
+                        <span class="last-month">
+                          <a>{{ i - calendar.monthrange(datetime.datetime.today().year,datetime.datetime.today().month)[1] }}</a>
                         </span>
                       {% endif %}
                     {% endfor %}
