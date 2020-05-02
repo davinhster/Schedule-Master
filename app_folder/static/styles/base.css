@@ -101,30 +101,68 @@ li{
 
 
 .eventCard{
-    background-color: #e9ecef;
-    border: 3px solid white;
+    background-color: transparent;
     width: 30%;
+    height: 100px;
     margin: auto;
     margin-bottom: 2%;
 }
 
-.eventCard:hover{
-    transform: translateY(-4px);
-    background-color: #e5e9ec;
+.eventCard-inner{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: .8s;
+  transform-style: preserve-3d;
+  border: 3px solid white;
+
 }
+
+
+.eventCard:hover .eventCard-inner{
+    transform: rotateY(180deg);
+}
+
+.eventCard-front, .eventCard-back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+    background-color: #e9ecef;
+}
+
+.eventCard-front{
+    background-color: #e9ecef;
+    color: black;
+}
+
+.eventCard-back{
+    background-color: #e9ecef;
+    color: white;
+    transform: rotateY(180deg);
+}
+
 .eventTitle{
     font-size: 35px;
     border-bottom: 2px solid white;
     color: #6AA4B0;
 }
 
+.eventDescTitle{
+    font-size: 30px;
+    border-bottom: 2px solid white;
+    color: #6AA4B0;
+}
+
 .eventTimes{
-    font-size: 15px;
+    font-size: 18px;
     color: #6AA4B0;
 }
 
 .eventDesc{
-    margin-top: 5%;
+    margin-top: 1%;
     font-size: 20px;
     color: #6AA4B0;
 }

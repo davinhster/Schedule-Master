@@ -15,18 +15,29 @@
             {% for i in events %}
 
                 <div class="eventCard">
-  
-                    <div class="eventTitle"> 
-                        Meeting with {{ i.guestname }}
-                    </div>
-                    <div class="eventTimes">
-                        Date: {{ i.eventDate }} | 
-                        Time: {{ i.eventTime }} 
-                    </div>
-                    <div class="eventDesc">
-                        Event Description: {{ i.description }}
-                    </div>
+                    <div class="eventCard-inner">
+
+                        <div class="eventCard-front">
+                            <div class="eventTitle"> 
+                                Meeting with {{ i.guestname }}
+                            </div>
+                            <div class="eventTimes">
+                                Date: {{ i.eventDate }} | 
+                                Time: {{ i.eventTime }} 
+                            </div>
+                        </div>
     
+                        <div class="eventCard-back">
+                            <div class="eventDescTitle">
+                                Event Description:
+                            </div>
+                             <div class="eventDesc">
+                                {{ i.description }}
+                            </div>
+            
+                        </div>
+
+                    </div>
                 </div>
             
 
