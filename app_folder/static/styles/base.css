@@ -104,3 +104,8 @@ li{
 #registerLink{
     color:#2F6D80;
 }
+
+#submit{
+    color: white;
+    background-color: rgb(58, 133, 156);
+}
