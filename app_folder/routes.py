@@ -86,6 +86,9 @@ def delete_account():
             return redirect("settings")
         else:
             user = current_user
+            events = Event.query.filter_by(username=user.username).all()
+            for i in events:
+                db.session.delete(i)
             db.session.delete(user)
             db.session.commit()
             flash('Sorry to see you go.')
