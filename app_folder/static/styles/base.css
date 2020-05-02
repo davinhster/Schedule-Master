@@ -105,6 +105,12 @@ li{
     border: 3px solid white;
     width: 30%;
     margin: auto;
+    margin-bottom: 2%;
+}
+
+.eventCard:hover{
+    transform: translateY(-4px);
+    background-color: #e5e9ec;
 }
 .eventTitle{
     font-size: 35px;
