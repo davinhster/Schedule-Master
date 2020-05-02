@@ -27,6 +27,7 @@ class User(UserMixin, db.Model):
 
     posts = db.relationship('Post', backref='author', lazy='dynamic')
 
+
     def __repr__(self):
         ''' This function will format username
         
