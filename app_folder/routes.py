@@ -139,7 +139,7 @@ def bookTime(user,day,month,year):
         return render_template('booktime.html', title='Book Time',theInterval = timeInterval, range = theRange,user = user,day = day,month=month,year=year) 
     else:
         userList = User.query.all()
-        flash("User has not chosen availibility time")
+        flash("Chosen user has not chosen availibility times!")
         return render_template('users.html',title ='List of Users',userList = userList)
 
 @app.route("/bookdetails/<user>/<day>-<month>-<year>/<start>-<end>", methods = ['GET','POST'])

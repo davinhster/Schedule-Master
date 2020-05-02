@@ -30,6 +30,11 @@ a{
     color: #6AA4B0;
 }
 
+a:hover{
+    color: #6AA4B0;
+    text-decoration: none;
+}
+
 hr{
     border: 1px solid white;
 }
@@ -74,6 +79,25 @@ li{
     color: rgb(128, 47, 47);
 }
 
+
+
+.userName{
+    background:#e9ecef;
+    margin: 3% auto;
+    font-size: 35px;
+    width: 10%;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    border-radius: 10%;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+    border-left: 3px solid white;
+}
+
+.userName:hover{
+    background-color:#f7fafd;
+    transform: translateY(-4px);
+}
 
 /* >>ID SELECTORS<< */
 
