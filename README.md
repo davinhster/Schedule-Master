@@ -9,6 +9,16 @@ Digital calendars are incredibly useful for setting up reminders for one-time ev
 * Flask 1.1.1
 * SQLAlchemy 1.3.13
 
+## Libraries used
+* calendar
+* datetime
+* numpy
+
+**Sources**:
+  * Source for python calendar: https://docs.python.org/3/library/calendar.html
+  * Source for datetime: https://docs.python.org/3/library/datetime.html
+  * Source for numpy: https://numpy.org/
+  * Calendar template from: https://codepen.io/gabrielcolombo/pen/LGzNwq
 
 ## Install pip and homebrew
 For Homebrew:
@@ -30,6 +40,7 @@ python get-pip.py
 ```terminal
 pip install Flask
 pip install -U Flask-SQLAlchemy
+pip install numpy
 brew install python3
 ```
 
