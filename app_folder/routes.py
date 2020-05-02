@@ -131,11 +131,16 @@ def bookTime(user,day,month,year):
             This will redirect the guest to the book times page.
     '''
     theUser = User.query.filter_by(username=user).first()
-    timeInterval = float(theUser.meetingLength) / 60.0
-    start = float(theUser.availabilityStart)
-    end = float(theUser.availabilityEnd)
-    theRange = numpy.arange(start,end,timeInterval)
-    return render_template('booktime.html', title='Book Time',theInterval = timeInterval, range = theRange,user = user,day = day,month=month,year=year) 
+    if isinstance(theUser.meetingLength, (int, float, str)):
+        timeInterval = float(theUser.meetingLength) / 60.0
+        start = float(theUser.availabilityStart)
+        end = float(theUser.availabilityEnd)
+        theRange = numpy.arange(start,end,timeInterval)
+        return render_template('booktime.html', title='Book Time',theInterval = timeInterval, range = theRange,user = user,day = day,month=month,year=year) 
+    else:
+        userList = User.query.all()
+        flash("Chosen user has not chosen availibility times!")
+        return render_template('users.html',title ='List of Users',userList = userList)
 
 @app.route("/bookdetails/<user>/<day>-<month>-<year>/<start>-<end>", methods = ['GET','POST'])
 def bookingDetails(user,day,month,year,start,end):
