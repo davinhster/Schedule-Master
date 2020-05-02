@@ -99,6 +99,30 @@ li{
     transform: translateY(-4px);
 }
 
+
+.eventCard{
+    background-color: #e9ecef;
+    border: 3px solid white;
+    width: 30%;
+    margin: auto;
+}
+.eventTitle{
+    font-size: 35px;
+    border-bottom: 2px solid white;
+    color: #6AA4B0;
+}
+
+.eventTimes{
+    font-size: 15px;
+    color: #6AA4B0;
+}
+
+.eventDesc{
+    margin-top: 5%;
+    font-size: 20px;
+    color: #6AA4B0;
+}
+
 /* >>ID SELECTORS<< */
 #userList{
     width: 40%;
