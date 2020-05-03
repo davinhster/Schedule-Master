@@ -9,6 +9,7 @@ import numpy
 
 # different URL the app will implement
 @login_required
+@app.route("/")
 def hello():
     ''' This function will greet the user. This function welcomes the user with their username after they login.
 
@@ -164,7 +165,6 @@ def bookingDetails(user,day,month,year,start,end):
     return render_template('bookingDetails.html', title='Booking Details', form = form,user = user,date = date,time = time) 
 
 @app.route("/home")
-@app.route("/")
 def home():
     ''' This is the home function for guests.
     
