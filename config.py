@@ -6,6 +6,7 @@ class Config():
 
     This will make a secret key'''
     SECRET_KEY = 'you-will-never-guess'
+    EXPLAIN_TEMPLATE_LOADING = True
 
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'app.db')
     SQLALCHEMY_TRACK_MODIFICATIONS = False
