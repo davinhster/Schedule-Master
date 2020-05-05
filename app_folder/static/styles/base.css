@@ -181,3 +181,8 @@ li{
     color: white;
     background-color: rgb(58, 133, 156);
 }
+
+
+.card-body{
+    background-color: #e9ecef;
+}

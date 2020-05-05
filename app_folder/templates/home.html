@@ -5,12 +5,39 @@
 <div class="jumbotron">
   <h1 class="display-4">Schedule Master</h1>
   <p class="lead"> Your favorite digital calendar </p>
-  <p>Guests click 
-  	<button type="button" class="btn btn-danger"><a href = "/users">here</a></button>
-   to schedule book an appointment.</p>
   <hr class="my-4">
   <p>Register now to be able to host events with people all around the world!</p>
   <a class="btn btn-info btn-md" href="/register" role="button">Register</a>
 </div>
+
+
+<section>
+  <div class="container">
+    <div class="row">
+      <div class="col center-block">
+        <div class="card" style="width: 30rem;">
+          <img src="{{url_for('static', filename='img/guest.png')}}"  class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title"> As a Guest</h5>
+            <p class="card-text">You can book times with created accounts!</p>
+            <a href="/users" class="btn btn-info btn-md"> Book times</a>
+          </div>
+        </div>
+      </div>
+      <div class="col center-block">
+        <div class="card" style="width: 30rem;">
+          <img src="{{url_for('static', filename='img/creator.png')}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">As a Creator</h5>
+            <p class="card-text">You can set availibilty and view events!</p>
+            <a href="/register" class="btn btn-info btn-md">Create account</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
 
 {% endblock %}
