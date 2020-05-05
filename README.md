@@ -1,5 +1,7 @@
 # About Schedule-Master
 
+https://cmpe131-team7.herokuapp.com/home
+
 Digital calendars are incredibly useful for setting up reminders for one-time events, as well as annual events, but digital calendars fall behind when it comes to a platform that can allow multiple users to add, delete, and modify non-overlapping events.
   
   
