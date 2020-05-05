@@ -140,7 +140,7 @@ def bookTime(user,day,month,year):
         start = float(theUser.availabilityStart)
         end = float(theUser.availabilityEnd)
         theRange = numpy.arange(start,end,timeInterval)
-        return render_template('booktime.html', title='Book Time',theInterval = timeInterval, range = theRange,user = user,day = day,month=month,year=year) 
+        return render_template('bookTime.html', title='Book Time',theInterval = timeInterval, range = theRange,user = user,day = day,month=month,year=year) 
     else:
         userList = User.query.all()
         flash("Chosen user has not chosen availibility times!")
