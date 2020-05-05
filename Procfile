@@ -1,1 +1,1 @@
-web: gunicorn wsgi:app_folder
+web: gunicorn app_folder:app
