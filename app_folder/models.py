@@ -74,6 +74,7 @@ class Event(db.Model):
     username = db.Column(db.String(64), index=True)
     eventDate = db.Column(db.String(32), index=True)
     eventTime = db.Column(db.String(32), index=True)
+    militaryTime = db.Column(db.String(32), index=True)
     guestname = db.Column(db.String(64), index=True)
     description = db.Column(db.String(128), index=True)
 

@@ -5,7 +5,7 @@ from app_folder.models import User, Post, Event
 from flask_login import current_user, login_required, logout_user, login_user
 import calendar
 import datetime
-import numpy
+import numpy, re
 
 # different URL the app will implement
 @login_required
@@ -139,15 +139,29 @@ def bookTime(user,day,month,year):
         timeInterval = float(theUser.meetingLength) / 60.0
         start = float(theUser.availabilityStart)
         end = float(theUser.availabilityEnd)
+        events = Event.query.filter_by(username=user).all()
+        times = [None] * len(events)
+        dates = [None] * len(events)
+        j = 0
+        for i in events:
+            times[j] = i.militaryTime
+            dates[j] = i.eventDate
+            j += 1
+        dateFormat = month+'/'+day+'/'+year
         theRange = numpy.arange(start,end,timeInterval)
+        j = 0
+        for i in theRange:
+            if(dateFormat in dates and str(i) in times):
+                theRange[j] = -1.0
+            j+=1
         return render_template('bookTime.html', title='Book Time',theInterval = timeInterval, range = theRange,user = user,day = day,month=month,year=year) 
     else:
         userList = User.query.all()
         flash("Chosen user has not chosen availibility times!")
         return render_template('users.html',title ='List of Users',userList = userList)
 
-@app.route("/bookdetails/<user>/<day>-<month>-<year>/<start>-<end>", methods = ['GET','POST'])
-def bookingDetails(user,day,month,year,start,end):
+@app.route("/bookdetails/<user>/<day>-<month>-<year>/<start>-<end>/<military>", methods = ['GET','POST'])
+def bookingDetails(user,day,month,year,start,end,military):
     ''' This is the booking details function for guests.
     
         Returns:
@@ -158,7 +172,7 @@ def bookingDetails(user,day,month,year,start,end):
     time = start+'-'+end
     form = BookTimeForm()
     if form.validate_on_submit():
-        event = Event(username = theUser.username, eventDate = date, eventTime = time,guestname = form.guestname.data, description = form.description.data)
+        event = Event(username = theUser.username, eventDate = date, eventTime = time,guestname = form.guestname.data, description = form.description.data,militaryTime = str(military))
         db.session.add(event)
         db.session.commit()
         flash("Booking Confirmed")
