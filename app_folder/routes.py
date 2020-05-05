@@ -9,14 +9,15 @@ import numpy
 
 # different URL the app will implement
 @login_required
-@app.route("/")
+@app.route("/",methods=['GET', 'POST'])
 def hello():
     ''' This function will greet the user. This function welcomes the user with their username after they login.
 
         Returns:
             Will render the index page A.K.A. user home page.
     '''
-
+    if not current_user.is_authenticated:
+        return redirect("/home")
     user = current_user
     events = Event.query.filter_by(username=user.username).all()
     return render_template('index.html', title='Home',user = user, events = events)
