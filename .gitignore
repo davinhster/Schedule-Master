@@ -44,3 +44,6 @@ Thumbs.db
 *.orig
 __pycache__/
 *.code-workspace
+*.mo
+*.po
+/site-packages
