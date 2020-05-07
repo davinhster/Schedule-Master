@@ -1,4 +1,5 @@
 language: python
+os: osx
 python:
   - "3.8.1"      # current default Python on Travis CI
 # command to install dependencies
