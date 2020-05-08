@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/davinhster/Schedule-Master.svg?branch=master)](https://travis-ci.com/davinhster/Schedule-Master)
+
 # About Schedule-Master
 
 https://cmpe131-team7.herokuapp.com/home
