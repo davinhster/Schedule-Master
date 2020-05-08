@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/davinhster/Schedule-Master.svg?branch=master)](https://travis-ci.com/davinhster/Schedule-Master)
+[![Build Status](https://travis-ci.com/davinhster/Schedule-Master.svg?token=ce4M9mP9GgpQNtW8LvC1&branch=master)](https://travis-ci.com/davinhster/Schedule-Master)
 
 # About Schedule-Master
 
